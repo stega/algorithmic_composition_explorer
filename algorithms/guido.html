@@ -1,0 +1,95 @@
+---
+layout: default
+title: Guido of Arezzo
+js: guido
+---
+
+<div class='container'>
+  <div class='row mb-3'>
+    <div class='col'>
+      <h1>Guido of Arezzo</h1>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col'>
+      <textarea class="form-control mb-3" id="notesInput" placeholder="Type or paste text here"></textarea>
+      <div class='row mb-2'>
+        <div class='col-1'>
+          A
+        </div>
+        <div class='col-2'>
+          <select class="form-select">
+            {% include pitch_select.html %}
+          </select>
+        </div>
+      </div>
+      <div class='row mb-2'>
+        <div class='col-1'>
+          E
+        </div>
+        <div class='col-2'>
+          <select class="form-select">
+            {% include pitch_select.html %}
+          </select>
+        </div>
+      </div>
+      <div class='row mb-2'>
+        <div class='col-1'>
+          I
+        </div>
+        <div class='col-2'>
+          <select class="form-select">
+            {% include pitch_select.html %}
+          </select>
+        </div>
+      </div>
+      <div class='row mb-2'>
+        <div class='col-1'>
+          O
+        </div>
+        <div class='col-2'>
+          <select class="form-select">
+            {% include pitch_select.html %}
+          </select>
+        </div>
+      </div>
+      <div class='row mb-2'>
+        <div class='col-1'>
+          U
+        </div>
+        <div class='col-2'>
+          <select class="form-select">
+            {% include pitch_select.html %}
+          </select>
+        </div>
+      </div>
+      <div class='row mt-3'>
+        <div class='col'>
+          <button class="btn btn-primary" id="genNotes">Generate notes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col'>
+      <div id='score'></div>
+      <button id='playNotes' hidden class='btn btn-primary'>Play</button>
+    </div>
+  </div>
+</div>
+
+
+{% contentfor algorithm_description %}
+
+<h3>About</h3>
+<p>Guido of Arezzo was an 11th century music educator and Benedictine monk. He developed many unique processes to help others learn about and compose music. For one such algorithm, a composer would map the vowels a-e-i-o-u onto the notes of a scale, look up a passage of scripture and apply pitches to individual syllables in the passage.</p>
+<p>This algorithm pays hommage to Guido. You can add your own text, and define the pitches that will map to each vowel. In addition, note length is determined by the number of vowels in each word.</p>
+<h4>Instructions</h4>
+<ol>
+  <li>Add text to be analysed</li>
+  <li>Change vowel-to-note mapping to the notes of your choice</li>
+  <li>Change note duration mapping</li>
+  <li>Generate music!</li>
+</ol>
+
+{% endcontentfor %}
