@@ -10,66 +10,142 @@ js: guido
       <h1>Guido of Arezzo</h1>
     </div>
   </div>
+
+  <!-- TEXT INPUT -->
   <div class='row'>
     <div class='col'>
       <textarea class="form-control mb-3" id="notesInput" placeholder="Type or paste text here"></textarea>
+    </div>
+  </div>
+
+  <!-- SELECT BOXES - COLUMN 1-->
+  <div class='row' id='pitch-select'>
+    <div class='col p-sm-2'>
+      <label class='ms-4 mb-3'><strong>Pitch</strong></label>
+      <i class="bi-question-circle ms-1" data-bs-toggle="tooltip" data-bs-placement="right" title="Converts each vowel in the text to the specified pitch"></i>
       <div class='row mb-2'>
-        <div class='col-1'>
-          A
+        <div class='col-4 position-relative'>
+          <div class="position-absolute top-50 start-50 translate-middle"><strong>A</strong></div>
         </div>
-        <div class='col-2'>
-          <select class="form-select">
-            {% include pitch_select.html %}
+        <div class='col-6'>
+          <select class="form-select" id="pitch-select-a">
+            {% include pitch_select.html selected="C" %}
           </select>
         </div>
       </div>
       <div class='row mb-2'>
-        <div class='col-1'>
-          E
+        <div class='col-4 position-relative'>
+          <div class="position-absolute top-50 start-50 translate-middle"><strong>E</strong></div>
         </div>
-        <div class='col-2'>
-          <select class="form-select">
-            {% include pitch_select.html %}
+        <div class='col-6'>
+          <select class="form-select" id="pitch-select-e">
+            {% include pitch_select.html selected="Eb" %}
           </select>
         </div>
       </div>
       <div class='row mb-2'>
-        <div class='col-1'>
-          I
+        <div class='col-4 position-relative'>
+          <div class="position-absolute top-50 start-50 translate-middle"><strong>I</strong></div>
         </div>
-        <div class='col-2'>
-          <select class="form-select">
-            {% include pitch_select.html %}
+        <div class='col-6'>
+          <select class="form-select" id="pitch-select-i">
+            {% include pitch_select.html selected="F" %}
           </select>
         </div>
       </div>
       <div class='row mb-2'>
-        <div class='col-1'>
-          O
+        <div class='col-4 position-relative'>
+          <div class="position-absolute top-50 start-50 translate-middle"><strong>O</strong></div>
         </div>
-        <div class='col-2'>
-          <select class="form-select">
-            {% include pitch_select.html %}
+        <div class='col-6'>
+          <select class="form-select" id="pitch-select-o">
+            {% include pitch_select.html selected="G" %}
           </select>
         </div>
       </div>
       <div class='row mb-2'>
-        <div class='col-1'>
-          U
+        <div class='col-4 position-relative'>
+          <div class="position-absolute top-50 start-50 translate-middle"><strong>U</strong></div>
         </div>
-        <div class='col-2'>
-          <select class="form-select">
-            {% include pitch_select.html %}
+        <div class='col-6'>
+          <select class="form-select" id="pitch-select-u">
+            {% include pitch_select.html selected="Bb" %}
           </select>
         </div>
       </div>
-      <div class='row mt-3'>
-        <div class='col'>
-          <button class="btn btn-primary" id="genNotes">Generate notes</button>
+    </div>
+
+    <!-- SELECT BOXES - COLUMN 2 -->
+    <div class='col p-2'>
+      <label class='ms-4 mb-3'><strong>Note duration</strong></label>
+      <i class="bi-question-circle ms-1" data-bs-toggle="tooltip" data-bs-placement="right" title="Converts the number of vowels in a word to the specified note duration"></i>
+
+      <div class='row mb-2'>
+        <div class='col-4 position-relative'>
+          <div class="position-absolute top-50 start-50 translate-middle"><strong>1</strong></div>
+        </div>
+        <div class='col-6'>
+          <select class="form-select" id="duration-select-1">
+            {% include duration_select.html selected="1/8" %}
+          </select>
+        </div>
+      </div>
+      <div class='row mb-2'>
+        <div class='col-4 position-relative'>
+          <div class="position-absolute top-50 start-50 translate-middle"><strong>2</strong></div>
+        </div>
+        <div class='col-6'>
+          <select class="form-select" id="duration-select-2">
+            {% include duration_select.html selected="1/8" %}
+          </select>
+        </div>
+      </div>
+      <div class='row mb-2'>
+        <div class='col-4 position-relative'>
+          <div class="position-absolute top-50 start-50 translate-middle"><strong>3</strong></div>
+        </div>
+        <div class='col-6'>
+          <select class="form-select" id="duration-select-3">
+            {% include duration_select.html selected="1/8" %}
+          </select>
+        </div>
+      </div>
+      <div class='row mb-2'>
+        <div class='col-4 position-relative'>
+          <div class="position-absolute top-50 start-50 translate-middle"><strong>4</strong></div>
+        </div>
+        <div class='col-6'>
+          <select class="form-select" id="duration-select-4">
+            {% include duration_select.html selected="1/8" %}
+          </select>
+        </div>
+      </div>
+      <div class='row mb-2'>
+        <div class='col-4 position-relative'>
+          <div class="position-absolute top-50 start-50 translate-middle"><strong>5</strong></div>
+        </div>
+        <div class='col-6'>
+          <select class="form-select" id="duration-select-5">
+            {% include duration_select.html selected="1/8" %}
+          </select>
         </div>
       </div>
     </div>
   </div>
+
+
+  <!-- GENERATE NOTES BUTTON -->
+  <div class='row mt-3'>
+    <div class='col'>
+      <button class="btn btn-primary" id="genNotes">Generate notes</button>
+    </div>
+  </div>
+
+  <div class="vexbox">
+    <div id="boo"></div>
+  </div>
+
+  <!-- PLAY NOTES BUTTON -->
   <div class='row'>
     <div class='col'>
       <div id='score'></div>

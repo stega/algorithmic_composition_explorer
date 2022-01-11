@@ -1,60 +1,29 @@
-// @import "bootstrap/functions";
+// ----------------------------------------
+// Bootstrap resets
+// ----------------------------------------
+.btn-primary{
+  background-color: #307c97;
+}
+.btn-primary:hover{
+  background-color: darken(#307c97, 10);
+}
+.bg-primary{
+  background-color: #307c97 !important;
+}
 
-// $blue:    #307c97;
-// $indigo:  #6610f2;
-// $purple:  #6f42c1;
-// $pink:    #d63384;
-// $red:     #dc3545;
-// $orange:  #fd7e14;
-// $yellow:  #ffc107;
-// $green:   #73a51d;
-// $teal:    #20c997;
-// $cyan:    #0dcaf0;
+.nav-link{
+  color: #307c97;
+}
+.nav-link:hover{
+  color: darken(#307c97, 20);
+}
+// ----------------------------------------
 
-// $primary:       $blue;
-// $secondary:     $green;
-// $success:       $green;
-// $info:          $cyan;
-// $warning:       $yellow;
-// $danger:        $red;
-// @import "bootstrap/mixins";
-// @import "bootstrap/utilities";
-// @import "bootstrap/variables";
-@import "bootstrap/bootstrap";
 
-// @import "bootstrap/variables";
-// @import "bootstrap/mixins";
-// @import "bootstrap/utilities";
-
-// @import "bootstrap/root";
-// @import "bootstrap/reboot";
-// @import "bootstrap/type";
-// @import "bootstrap/images";
-// @import "bootstrap/containers";
-// @import "bootstrap/grid";
-// @import "bootstrap/forms";
-// @import "bootstrap/buttons";
-// @import "bootstrap/transitions";
-// @import "bootstrap/dropdown";
-// @import "bootstrap/button-group";
-// @import "bootstrap/nav";
-// @import "bootstrap/navbar";
-// @import "bootstrap/card";
-// @import "bootstrap/accordion";
-// @import "bootstrap/breadcrumb";
-// @import "bootstrap/pagination";
-// @import "bootstrap/badge";
-// @import "bootstrap/alert";
-// @import "bootstrap/progress";
-// @import "bootstrap/list-group";
-// @import "bootstrap/close";
-// @import "bootstrap/toasts";
-// @import "bootstrap/modal";
-// @import "bootstrap/tooltip";
-// @import "bootstrap/popover";
-// @import "bootstrap/carousel";
-// @import "bootstrap/spinners";
-// @import "bootstrap/offcanvas";
-// @import "bootstrap/placeholders";
-// @import "bootstrap/helpers";
-// @import "bootstrap/utilities/api";
+.vexbox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 300px;
+}
