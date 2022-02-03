@@ -1,4 +1,12 @@
 - name: Guido of Arezzo
   link: /algorithms/guido.html
-- name: Dice games
+- name: Musikalisches Würfelspiel - dice games
   link: /about.html
+- name: Markov chains
+  link: /markov.html
+- name: Arvo Pärt - Tintinnabuli
+  link: /tintinnabuli.html
+- name: Twelve-tone Method & Serialism
+  link: /serialism.html
+- name: Machine Learning - Magenta
+  link: /magenta.html

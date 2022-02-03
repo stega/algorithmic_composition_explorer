@@ -7,6 +7,9 @@
 .btn-primary:hover{
   background-color: darken(#307c97, 10);
 }
+.btn-primary:focus{
+  background-color: darken(#307c97, 10);
+}
 .bg-primary{
   background-color: #307c97 !important;
 }
@@ -19,11 +22,11 @@
 }
 // ----------------------------------------
 
+.algo-panel{
+  border: 1px solid #ccc;
+  background-color: #efefef;
+}
 
-.vexbox {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 300px;
+.green{
+  background-color: green !important;
 }
