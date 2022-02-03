@@ -11,7 +11,7 @@ js: guido
   <div class='row '>
     <div class='col-12'>
       <textarea class="form-control mb-3 rounded-3"
-                id="notesInput"
+                id="notes-input"
                 placeholder="Type or paste text to be analysed here"></textarea>
     </div>
   </div>
@@ -36,12 +36,12 @@ js: guido
     </div>
     <div class='col-5'>
       <select class="form-select" id="pitch-select-a">
-        {% include pitch_select.html selected="C" %}
+        {% include pitch-select.html selected="C" %}
       </select>
     </div>
     <div class='col-5'>
       <select class="form-select" id="duration-select-a">
-        {% include duration_select.html selected="1/16" %}
+        {% include duration-select.html selected="1/16" %}
       </select>
     </div>
   </div>
@@ -52,12 +52,12 @@ js: guido
     </div>
     <div class='col-5'>
       <select class="form-select" id="pitch-select-e">
-        {% include pitch_select.html selected="Eb" %}
+        {% include pitch-select.html selected="Eb" %}
       </select>
     </div>
     <div class='col-5'>
       <select class="form-select" id="duration-select-e">
-        {% include duration_select.html selected="1/8" %}
+        {% include duration-select.html selected="1/8" %}
       </select>
     </div>
   </div>
@@ -68,12 +68,12 @@ js: guido
     </div>
     <div class='col-5'>
       <select class="form-select" id="pitch-select-i">
-        {% include pitch_select.html selected="F" %}
+        {% include pitch-select.html selected="F" %}
       </select>
     </div>
     <div class='col-5'>
       <select class="form-select" id="duration-select-i">
-        {% include duration_select.html selected="1/4" %}
+        {% include duration-select.html selected="1/4" %}
       </select>
     </div>
   </div>
@@ -84,12 +84,12 @@ js: guido
     </div>
     <div class='col-5'>
       <select class="form-select" id="pitch-select-o">
-        {% include pitch_select.html selected="G" %}
+        {% include pitch-select.html selected="G" %}
       </select>
     </div>
     <div class='col-5'>
       <select class="form-select" id="duration-select-o">
-        {% include duration_select.html selected="1/2" %}
+        {% include duration-select.html selected="1/2" %}
       </select>
     </div>
   </div>
@@ -100,12 +100,12 @@ js: guido
     </div>
     <div class='col-5'>
       <select class="form-select" id="pitch-select-u">
-        {% include pitch_select.html selected="Bb" %}
+        {% include pitch-select.html selected="Bb" %}
       </select>
     </div>
     <div class='col-5'>
       <select class="form-select" id="duration-select-u">
-        {% include duration_select.html selected="1" %}
+        {% include duration-select.html selected="1" %}
       </select>
     </div>
   </div>

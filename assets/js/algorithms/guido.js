@@ -8,9 +8,9 @@ window.onload = (event) => {
 function generateNotes(e) {
   score.clear()
   // get text from user
-  fullText = document.querySelector('#notesInput').value;
+  fullText = document.querySelector('#notes-input').value;
   // generate musical pattern from users text
-  map_pitches(fullText);
+  mapPitches(fullText);
   // display music
   score.render();
 }
@@ -19,8 +19,8 @@ function playGeneratedNotes(e) {
   AudioPlayer.play(score);
 }
 
-function build_note_table() {
-  return note_table = {
+function buildPitchTable() {
+  return pitchTable = {
     'a': document.querySelector('#pitch-select-a').value,
     'e': document.querySelector('#pitch-select-e').value,
     'i': document.querySelector('#pitch-select-i').value,
@@ -29,8 +29,8 @@ function build_note_table() {
   };
 }
 
-function build_note_duration_table() {
-  return note_duration_table = {
+function buildDurationTable() {
+  return durationTable = {
     'a': document.querySelector('#duration-select-a').value,
     'e': document.querySelector('#duration-select-e').value,
     'i': document.querySelector('#duration-select-i').value,
@@ -39,18 +39,18 @@ function build_note_duration_table() {
   };
 }
 
-function map_pitches(text) {
+function mapPitches(text) {
   // create lookup tables for pitches and note duration
-  note_table          = build_note_table();
-  note_duration_table = build_note_duration_table();
+  pitchTable    = buildPitchTable();
+  durationTable = buildDurationTable();
 
   // loop through text & convert vowels to pitches/durations
-  words   = text.toLowerCase().split(' ');
+  words = text.toLowerCase().split(' ');
   words.forEach(function(word, index) {
     for (let char of word) {
-      if (is_vowel(char)) {
-        duration = note_duration_table[char];
-        pitch    = note_table[char];
+      if (isVowel(char)) {
+        duration = durationTable[char];
+        pitch    = pitchTable[char];
         score.addNote(pitch, duration);
       }
     }
@@ -58,10 +58,10 @@ function map_pitches(text) {
   score.addDoubleBarline();
 }
 
-function is_vowel(char) {
+function isVowel(char) {
   return (char.match(/[aeiou]/)) ? true : false
 }
 
-function vowel_count(word) {
+function vowelCount(word) {
   return ((word || '').match(/[aeiou]/g) || []).length
 }

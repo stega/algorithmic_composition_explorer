@@ -1,5 +1,5 @@
 class Score {
-    
+
   constructor(){
     this.score = [];
   }
@@ -30,11 +30,11 @@ class Score {
   }
 
   toABC() {
-    let abc_string = "";
+    let abcString = "";
     for(let event of this.score) {
-      abc_string += event
+      abcString += event
     }
-    return abc_string
+    return abcString
   }
 
   hasNotes() {
