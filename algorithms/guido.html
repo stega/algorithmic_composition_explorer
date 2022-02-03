@@ -4,152 +4,167 @@ title: Guido of Arezzo
 js: guido
 ---
 
-<div class='container'>
-  <div class='row mb-3'>
-    <div class='col'>
-      <h1>Guido of Arezzo</h1>
-    </div>
-  </div>
+<h4 class='mb-3'>Try it yourself!</h4>
+<div class='container algo-panel pt-4 rounded-3'>
 
   <!-- TEXT INPUT -->
-  <div class='row'>
-    <div class='col'>
-      <textarea class="form-control mb-3" id="notesInput" placeholder="Type or paste text here"></textarea>
+  <div class='row '>
+    <div class='col-12'>
+      <textarea class="form-control mb-3 rounded-3"
+                id="notesInput"
+                placeholder="Type or paste text to be analysed here"></textarea>
     </div>
   </div>
 
-  <!-- SELECT BOXES - COLUMN 1-->
-  <div class='row' id='pitch-select'>
-    <div class='col p-sm-2'>
-      <label class='ms-4 mb-3'><strong>Pitch</strong></label>
-      <i class="bi-question-circle ms-1" data-bs-toggle="tooltip" data-bs-placement="right" title="Converts each vowel in the text to the specified pitch"></i>
-      <div class='row mb-2'>
-        <div class='col-4 position-relative'>
-          <div class="position-absolute top-50 start-50 translate-middle"><strong>A</strong></div>
-        </div>
-        <div class='col-6'>
-          <select class="form-select" id="pitch-select-a">
-            {% include pitch_select.html selected="C" %}
-          </select>
-        </div>
-      </div>
-      <div class='row mb-2'>
-        <div class='col-4 position-relative'>
-          <div class="position-absolute top-50 start-50 translate-middle"><strong>E</strong></div>
-        </div>
-        <div class='col-6'>
-          <select class="form-select" id="pitch-select-e">
-            {% include pitch_select.html selected="Eb" %}
-          </select>
-        </div>
-      </div>
-      <div class='row mb-2'>
-        <div class='col-4 position-relative'>
-          <div class="position-absolute top-50 start-50 translate-middle"><strong>I</strong></div>
-        </div>
-        <div class='col-6'>
-          <select class="form-select" id="pitch-select-i">
-            {% include pitch_select.html selected="F" %}
-          </select>
-        </div>
-      </div>
-      <div class='row mb-2'>
-        <div class='col-4 position-relative'>
-          <div class="position-absolute top-50 start-50 translate-middle"><strong>O</strong></div>
-        </div>
-        <div class='col-6'>
-          <select class="form-select" id="pitch-select-o">
-            {% include pitch_select.html selected="G" %}
-          </select>
-        </div>
-      </div>
-      <div class='row mb-2'>
-        <div class='col-4 position-relative'>
-          <div class="position-absolute top-50 start-50 translate-middle"><strong>U</strong></div>
-        </div>
-        <div class='col-6'>
-          <select class="form-select" id="pitch-select-u">
-            {% include pitch_select.html selected="Bb" %}
-          </select>
-        </div>
-      </div>
+  <!-- LABELS -->
+  <div class='row mb-3 px-3 mb-2'>
+    <div class='col-2'>
+      <label class=''><strong>Vowel</strong></label>
     </div>
+    <div class='col-5'>
+      <label class=''><strong>Pitch</strong></label>
+    </div>
+    <div class='col-5'>
+      <label class=''><strong>Note Length</strong></label>
+    </div>
+  </div>
 
-    <!-- SELECT BOXES - COLUMN 2 -->
-    <div class='col p-2'>
-      <label class='ms-4 mb-3'><strong>Note duration</strong></label>
-      <i class="bi-question-circle ms-1" data-bs-toggle="tooltip" data-bs-placement="right" title="Converts the number of vowels in a word to the specified note duration"></i>
+  <!-- SELECT BOXES -->
+  <div class='row px-3 mb-1'>
+    <div class='col-2 pt-2'>
+      <strong>A</strong>
+    </div>
+    <div class='col-5'>
+      <select class="form-select" id="pitch-select-a">
+        {% include pitch_select.html selected="C" %}
+      </select>
+    </div>
+    <div class='col-5'>
+      <select class="form-select" id="duration-select-a">
+        {% include duration_select.html selected="1/16" %}
+      </select>
+    </div>
+  </div>
 
-      <div class='row mb-2'>
-        <div class='col-4 position-relative'>
-          <div class="position-absolute top-50 start-50 translate-middle"><strong>1</strong></div>
-        </div>
-        <div class='col-6'>
-          <select class="form-select" id="duration-select-1">
-            {% include duration_select.html selected="1/8" %}
-          </select>
-        </div>
-      </div>
-      <div class='row mb-2'>
-        <div class='col-4 position-relative'>
-          <div class="position-absolute top-50 start-50 translate-middle"><strong>2</strong></div>
-        </div>
-        <div class='col-6'>
-          <select class="form-select" id="duration-select-2">
-            {% include duration_select.html selected="1/8" %}
-          </select>
-        </div>
-      </div>
-      <div class='row mb-2'>
-        <div class='col-4 position-relative'>
-          <div class="position-absolute top-50 start-50 translate-middle"><strong>3</strong></div>
-        </div>
-        <div class='col-6'>
-          <select class="form-select" id="duration-select-3">
-            {% include duration_select.html selected="1/8" %}
-          </select>
-        </div>
-      </div>
-      <div class='row mb-2'>
-        <div class='col-4 position-relative'>
-          <div class="position-absolute top-50 start-50 translate-middle"><strong>4</strong></div>
-        </div>
-        <div class='col-6'>
-          <select class="form-select" id="duration-select-4">
-            {% include duration_select.html selected="1/8" %}
-          </select>
-        </div>
-      </div>
-      <div class='row mb-2'>
-        <div class='col-4 position-relative'>
-          <div class="position-absolute top-50 start-50 translate-middle"><strong>5</strong></div>
-        </div>
-        <div class='col-6'>
-          <select class="form-select" id="duration-select-5">
-            {% include duration_select.html selected="1/8" %}
-          </select>
-        </div>
-      </div>
+  <div class='row px-3 mb-1'>
+    <div class='col-2 pt-2'>
+      <strong>E</strong>
+    </div>
+    <div class='col-5'>
+      <select class="form-select" id="pitch-select-e">
+        {% include pitch_select.html selected="Eb" %}
+      </select>
+    </div>
+    <div class='col-5'>
+      <select class="form-select" id="duration-select-e">
+        {% include duration_select.html selected="1/8" %}
+      </select>
+    </div>
+  </div>
+
+  <div class='row px-3 mb-1'>
+    <div class='col-2 pt-2'>
+      <strong>I</strong>
+    </div>
+    <div class='col-5'>
+      <select class="form-select" id="pitch-select-i">
+        {% include pitch_select.html selected="F" %}
+      </select>
+    </div>
+    <div class='col-5'>
+      <select class="form-select" id="duration-select-i">
+        {% include duration_select.html selected="1/4" %}
+      </select>
+    </div>
+  </div>
+
+  <div class='row px-3 mb-1'>
+    <div class='col-2 pt-2'>
+      <strong>O</strong>
+    </div>
+    <div class='col-5'>
+      <select class="form-select" id="pitch-select-o">
+        {% include pitch_select.html selected="G" %}
+      </select>
+    </div>
+    <div class='col-5'>
+      <select class="form-select" id="duration-select-o">
+        {% include duration_select.html selected="1/2" %}
+      </select>
+    </div>
+  </div>
+
+  <div class='row px-3 mb-1'>
+    <div class='col-2 pt-2'>
+      <strong>U</strong>
+    </div>
+    <div class='col-5'>
+      <select class="form-select" id="pitch-select-u">
+        {% include pitch_select.html selected="Bb" %}
+      </select>
+    </div>
+    <div class='col-5'>
+      <select class="form-select" id="duration-select-u">
+        {% include duration_select.html selected="1" %}
+      </select>
     </div>
   </div>
 
 
   <!-- GENERATE NOTES BUTTON -->
-  <div class='row mt-3'>
-    <div class='col'>
-      <button class="btn btn-primary" id="genNotes">Generate notes</button>
+  <div class='row my-4 px-3'>
+    <div class='col-12 text-end'>
+      <button class="btn btn-primary"
+              id="genNotes"
+              data-bs-toggle="modal"
+              data-bs-target="#playerModal">
+            Generate!
+      </button>
     </div>
   </div>
+</div>
 
-  <div class="vexbox">
-    <div id="boo"></div>
-  </div>
+<!-- MODAL -->
+<div class="modal fade" id="playerModal" tabindex="-1" aria-labelledby="playerModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="playerModalLabel">Guido of Arezzo - generated score</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="staff"></div>
+      </div>
+      <div class="modal-footer" hidden>
+        <div class='row'>
+          <div class='col'>
+            <!-- DOWNLOAD BUTTONS -->
+            <button type="button" id='downloadMIDI' class="btn btn-secondary" data-bs-dismiss="modal">
+              <strong><i class="bi bi-download"></i></strong>
+              MIDI
+            </button>
+            <button type="button" id='downloadScore' class="btn btn-secondary" data-bs-dismiss="modal">
+              <strong><i class="bi bi-download"></i></strong>
+              Score
+            </button>
+          </div>
+        </div>
 
-  <!-- PLAY NOTES BUTTON -->
-  <div class='row'>
-    <div class='col'>
-      <div id='score'></div>
-      <button id='playNotes' hidden class='btn btn-primary'>Play</button>
+        <div class='row'>
+          <div class='col'>
+            <!-- STOP BUTTON -->
+            <button type="button" id='stop' class="btn btn-secondary">
+              <strong><i class="bi bi-stop-fill"></i></strong>
+              Stop
+            </button>
+            <!-- PLAY BUTTON -->
+            <button type="button" id='play' class='btn btn-primary'>
+              <strong><i class="bi bi-play-fill"></i></strong>
+              Play
+            </button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -157,14 +172,14 @@ js: guido
 
 {% contentfor algorithm_description %}
 
-<h3>About</h3>
 <p>Guido of Arezzo was an 11th century music educator and Benedictine monk. He developed many unique processes to help others learn about and compose music. For one such algorithm, a composer would map the vowels a-e-i-o-u onto the notes of a scale, look up a passage of scripture and apply pitches to individual syllables in the passage.</p>
-<p>This algorithm pays hommage to Guido. You can add your own text, and define the pitches that will map to each vowel. In addition, note length is determined by the number of vowels in each word.</p>
+<p>This algorithm pays homage to Guido. You can add your own text, and define the pitches that will map to each vowel. In addition, note length can also be mapped to each vowel.</p>
+
 <h4>Instructions</h4>
 <ol>
   <li>Add text to be analysed</li>
   <li>Change vowel-to-note mapping to the notes of your choice</li>
-  <li>Change note duration mapping</li>
+  <li>Change note length mapping</li>
   <li>Generate music!</li>
 </ol>
 
