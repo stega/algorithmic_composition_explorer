@@ -1,0 +1,123 @@
+---
+layout: default
+title: Markov Chains
+js: markov
+---
+
+<h4 class='mb-3'>Try it yourself!</h4>
+<div class='container algo-panel pt-4 rounded-3'>
+
+  <form enctype="multipart/form-data">
+      <h4>Choose songs </h4>
+      <h6>Welsh folk songs</h6>
+      <ul class='list-group' id='songs'>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div class="form-check form-switch">
+            <input class="form-check-input tune-checkbox" checked type="checkbox" role="switch" id="tune1">
+            <label class="form-check-label" for="tune1">Cainc y datgeinaid</label>
+          </div>
+          <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <button type="button" class="btn btn-sm btn-outline-primary stop-button">Stop</button>
+            <button type="button" class="btn btn-sm btn-outline-primary" id="tune1">Play</button>
+          </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div class="form-check form-switch">
+            <input class="form-check-input tune-checkbox" checked type="checkbox" role="switch" id="tune2">
+            <label class="form-check-label" for="tune2">Cán dan bared</label>
+          </div>
+          <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <button type="button" class="btn btn-sm btn-outline-primary stop-button">Stop</button>
+            <button type="button" class="btn btn-sm btn-outline-primary" id="tune2">Play</button>
+          </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div class="form-check form-switch">
+            <input class="form-check-input tune-checkbox" checked type="checkbox" role="switch" id="tune3">
+            <label class="form-check-label" for="tune3">Y Gelynen</label>
+          </div>
+          <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <button type="button" class="btn btn-sm btn-outline-primary stop-button">Stop</button>
+            <button type="button" class="btn btn-sm btn-outline-primary" id="tune3">Play</button>
+          </div>
+        </li>
+      </ul>
+
+      <h6 class='mt-4'>Computer games</h6>
+      <ul class='list-group' id='songs'>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div class="form-check form-switch">
+            <input class="form-check-input tune-checkbox" type="checkbox" role="switch" id="tune4">
+            <label class="form-check-label" for="tune1">Mortal Kombat</label>
+          </div>
+          <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <button type="button" class="btn btn-sm btn-outline-primary stop-button">Stop</button>
+            <button type="button" class="btn btn-sm btn-outline-primary" id="tune4">Play</button>
+          </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div class="form-check form-switch">
+            <input class="form-check-input tune-checkbox" type="checkbox" role="switch" id="tune5">
+            <label class="form-check-label" for="tune2">Tetris</label>
+          </div>
+          <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <button type="button" class="btn btn-sm btn-outline-primary stop-button">Stop</button>
+            <button type="button" class="btn btn-sm btn-outline-primary" id="tune5">Play</button>
+          </div>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          <div class="form-check form-switch">
+            <input class="form-check-input tune-checkbox" type="checkbox" role="switch" id="tune6">
+            <label class="form-check-label" for="tune3">Ultima</label>
+          </div>
+          <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <button type="button" class="btn btn-sm btn-outline-primary stop-button">Stop</button>
+            <button type="button" class="btn btn-sm btn-outline-primary" id="tune6">Play</button>
+          </div>
+        </li>
+      </ul>
+
+      <div class='row border mx-1 mt-3 px-2 py-3'>
+        <div class='col'>
+          Markov Order: <strong><span id='order-display'>5</span></strong>
+          <input type="range" class="form-range" min="3" max="9" step="1" id="order">
+        </div>
+        <div class='col'>
+          BPM: <strong><span id='bpm-display'>140</span></strong>
+          <input type="range" class="form-range" min="80" max="200" step="2" id="bpm">
+        </div>
+      </div>
+
+  </form>
+
+  <!-- GENERATE NOTES BUTTON -->
+  <div class='row my-4 px-3'>
+    <div class='col-12 text-end'>
+      <button class="btn btn-primary"
+              id="genNotes"
+              data-bs-toggle="modal"
+              data-bs-target="#playerModal">
+            Generate!
+      </button>
+    </div>
+  </div>
+</div>
+
+{% include player-modal.html %}
+
+<!------------------------------------------------------------------------------------------------------>
+
+{% contentfor algorithm_description %}
+
+
+{% endcontentfor %}
+
+<!------------------------------------------------------------------------------------------------------>
+
+{% contentfor code %}
+<h4>The code</h4>
+<pre>
+  <code>// create score to store the notes
+  </code>
+</pre>
+{% endcontentfor %}
