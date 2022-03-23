@@ -1,0 +1,44 @@
+<!-- MODAL -->
+<div class="modal fade" id="playerModal" tabindex="-1" aria-labelledby="playerModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="playerModalLabel">Generated score</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="staff"></div>
+      </div>
+      <div class="modal-footer" hidden>
+        <div class='row'>
+          <div class='col'>
+            <!-- DOWNLOAD BUTTONS -->
+            <button type="button" id='downloadMIDI' class="btn btn-secondary" data-bs-dismiss="modal">
+              <strong><i class="bi bi-download"></i></strong>
+              MIDI
+            </button>
+            <button type="button" id='downloadScore' class="btn btn-secondary" data-bs-dismiss="modal">
+              <strong><i class="bi bi-download"></i></strong>
+              Score
+            </button>
+          </div>
+        </div>
+
+        <div class='row'>
+          <div class='col'>
+            <!-- STOP BUTTON -->
+            <button type="button" class="btn btn-secondary stop-button">
+              <strong><i class="bi bi-stop-fill"></i></strong>
+              Stop
+            </button>
+            <!-- PLAY BUTTON -->
+            <button type="button" id='play' class='btn btn-primary'>
+              <strong><i class="bi bi-play-fill"></i></strong>
+              Play
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

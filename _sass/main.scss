@@ -14,6 +14,17 @@
   background-color: #307c97 !important;
 }
 
+.btn-outline-primary{
+  border-color: #307c97;
+  color: #307c97;
+  background-color: lighten(#307c97, 60);
+}
+.btn-outline-primary:hover{
+  border-color: #307c97;
+  color: #307c97;
+  background-color: #eee;
+}
+
 .nav-link{
   color: #307c97;
 }
@@ -23,10 +34,30 @@
 // ----------------------------------------
 
 .algo-panel{
-  border: 1px solid #ccc;
-  background-color: #efefef;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
 }
 
 .green{
   background-color: green !important;
+}
+
+// ----------------------------------------
+// DICE
+// ----------------------------------------
+.dice-grid{
+  padding-bottom: 1em;
+}
+.dice-num{
+  background-color:darken(#307c97, 0);
+  color: #fff;
+  text-align: center;
+  border: 1px solid #f9f9f9;
+}
+.dice-num-selected{
+  background-color:#fff;
+  border: 1px solid darken(#307c97, 0);
+  color: #307c97;
+  text-align: center;
+  font-weight: bold;
 }

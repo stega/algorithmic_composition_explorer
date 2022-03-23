@@ -16,7 +16,7 @@ function generateNotes(e) {
 }
 
 function playGeneratedNotes(e) {
-  AudioPlayer.play(score);
+  AudioPlayer.play(score.toABC());
 }
 
 function buildPitchTable() {
@@ -55,7 +55,8 @@ function mapPitches(text) {
       }
     }
   });
-  score.addDoubleBarline();
+  // end score
+  // score.addDoubleBarline();
 }
 
 function isVowel(char) {

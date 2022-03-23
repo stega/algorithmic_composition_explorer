@@ -1,11 +1,13 @@
+
+// TODO: change this to use Tone.js
 class AudioPlayer {
 
-  static play(score) {
-    let notes = ABCJS.renderAbc("*", score.toABC())[0];
+  static play(abc) {
+    let notes = ABCJS.renderAbc("*", abc)[0];
     let synth = new ABCJS.synth.CreateSynth();
     synth.init({
-      visualObj: notes,
-      millisecondsPerMeasure: 2500
+      visualObj: notes
+      // millisecondsPerMeasure: 2500
     }).then(function (response) {
       // response contains the list of notes that were loaded
       // synth.prime builds the output buffer
@@ -18,10 +20,12 @@ class AudioPlayer {
       console.warn("synth error", error);
     });
 
-    let stopBtn = document.querySelector('#stop');
-    stopBtn.addEventListener("click", function() {
-      if (synth)
-        synth.stop();
-    });
+    let stopBtns = document.querySelectorAll('.stop-button');
+    stopBtns.forEach(btn => {
+      btn.addEventListener("click", function() {
+        if (synth)
+          synth.stop();
+      })
+    })
   }
 }
