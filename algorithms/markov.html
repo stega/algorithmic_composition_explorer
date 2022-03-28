@@ -109,7 +109,15 @@ js: markov
 
 {% contentfor algorithm_description %}
 
+<p>Markov Chains are a sequence of random numbers, where the current random number only depends on one previous state. In the domain of music, it can be used to predict the notes of a song, given that it has had a song to work on before. In essence, it allows for some amount of machine learning probabilistic modeling of music. With the notes of the input song, we can construct an adjacency matrix for a Markov Chain by calculating the probabilities of the occurrence of a note, depending on its previous note. The output is a melody which is similar to the one given as the input.</p>
 
+<h4>Instructions</h4>
+<ol>
+  <li>Add text to be analysed</li>
+  <li>Change vowel-to-note mapping to the notes of your choice</li>
+  <li>Change note length mapping</li>
+  <li>Generate music!</li>
+</ol>
 {% endcontentfor %}
 
 <!------------------------------------------------------------------------------------------------------>
@@ -118,6 +126,31 @@ js: markov
 <h4>The code</h4>
 <pre>
   <code>// create score to store the notes
+    // get selected tunes into array
+    var tunes_array = []
+    var selectedTunes = document.querySelectorAll('.tune-checkbox:checked');
+    for(tune of selectedTunes){
+      var t = new Score()
+      t.importABC(window[tune.id])
+      tunes_array.push(t.scoreAsText())
+    }
+
+    markov.addStates(tunes_array)
+
+    var order = document.querySelector('#order').value
+    markov.train(parseInt(order))
+
+    var bpm = document.querySelector('#bpm').value
+    score.tempo = bpm
+    score.key = "D"
+
+    var generatedNotes = markov.generateRandom(120)
+    for(event of generatedNotes.split(' ')){
+      if(event != ""){
+        score.addNote(event[0], event[1])
+      }
+    }
+    score.render()
   </code>
 </pre>
 {% endcontentfor %}
