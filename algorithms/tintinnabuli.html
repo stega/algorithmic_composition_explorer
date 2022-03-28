@@ -1,0 +1,63 @@
+---
+layout: default
+title: Arvo Pärt - Tintinnabuli
+js: tintinnabuli
+---
+
+<h4 class='mb-3'>Try it yourself!</h4>
+<div class='container algo-panel pt-4 rounded-3'>
+
+  <form enctype="multipart/form-data">
+    <h5>M-part</h5>
+    <label for="key-select" class='form-label'>Choose key</label>
+    <select class="form-select" id="key-select">
+      {% include pitch-select.html selected="C" %}
+    </select>
+    <label for="rhythm-select" class='form-label'>Choose rhythm</label>
+    <select class="form-select" id="rhythm-select">
+      {% include duration-select.html selected="1/4" %}
+    </select>
+    <label for="direction-select" class='form-label'>Choose direction</label>
+    <select class="form-select" id="direction-select">
+      <option value="up" {% if include.selected == '1/16' %} selected {% endif %}>Ascending</option>
+      <option value="down" {% if include.selected == '1/16' %} selected {% endif %}>Descending</option>
+    </select>
+    <h5>T-part</h5>
+    <label for="octave-select" class='form-label'>Choose octave</label>
+    <select class="form-select" id="octave-select">
+      <option value="up">Above M-part</option>
+      <option value="down" selected>Below M-part</option>
+    </select>
+  </form>
+
+  <!-- GENERATE NOTES BUTTON -->
+  <div class='row my-4 px-3'>
+    <div class='col-12 text-end'>
+      <button class="btn btn-primary"
+              id="genNotes"
+              data-bs-toggle="modal"
+              data-bs-target="#playerModal">
+            Generate!
+      </button>
+    </div>
+  </div>
+</div>
+
+{% include player-modal.html %}
+
+<!------------------------------------------------------------------------------------------------------>
+
+{% contentfor algorithm_description %}
+Tintinnabuli, from the Latin for bell, is a compositional style created by the Estonian composer Arvo Pärt. Musically, tintinnabular music is characterized by two types of voice, the first of which (dubbed the "tintinnabular voice") arpeggiates the tonic triad, and the second of which moves diatonically in stepwise motion. The works often have a slow and meditative tempo, and a minimalist approach to both notation and performance.
+
+{% endcontentfor %}
+
+<!------------------------------------------------------------------------------------------------------>
+
+{% contentfor code %}
+<h4>The code</h4>
+<pre>
+  <code>// create score to store the notes
+  </code>
+</pre>
+{% endcontentfor %}
