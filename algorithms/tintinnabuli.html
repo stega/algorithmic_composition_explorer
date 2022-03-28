@@ -9,25 +9,75 @@ js: tintinnabuli
 
   <form enctype="multipart/form-data">
     <h5>M-part</h5>
-    <label for="key-select" class='form-label'>Choose key</label>
+    <label for="key-select" class='form-label'>Key</label>
     <select class="form-select" id="key-select">
       {% include pitch-select.html selected="C" %}
     </select>
-    <label for="rhythm-select" class='form-label'>Choose rhythm</label>
+
+    <div class='sequencer m-3'>
+      <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group" id='seq-btns'>
+        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
+        <label class="btn btn-outline-primary me-1" for="btncheck1">1</label>
+
+        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
+        <label class="btn btn-outline-primary me-1" for="btncheck2">2</label>
+
+        <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
+        <label class="btn btn-outline-primary me-1" for="btncheck3">3</label>
+
+        <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off">
+        <label class="btn btn-outline-primary me-1" for="btncheck4">4</label>
+
+        <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off">
+        <label class="btn btn-outline-primary me-1" for="btncheck5">5</label>
+
+        <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off">
+        <label class="btn btn-outline-primary me-1" for="btncheck6">6</label>
+
+        <input type="checkbox" class="btn-check" id="btncheck7" autocomplete="off">
+        <label class="btn btn-outline-primary me-1" for="btncheck7">7</label>
+
+        <input type="checkbox" class="btn-check" id="btncheck8" autocomplete="off">
+        <label class="btn btn-outline-primary me-1" for="btncheck8">8</label>
+      </div>
+      <button type="button" class='btn btn-outline-primary' id='seq-plus'>+</button>
+      <button type="button" class='btn btn-outline-primary' id='seq-minus'>-</button>
+    </div>
+
+    <label for="rhythm-select" class='form-label mt-2'>Base rhythm</label>
     <select class="form-select" id="rhythm-select">
-      {% include duration-select.html selected="1/4" %}
+      {% include duration-select.html selected="1/2" %}
     </select>
-    <label for="direction-select" class='form-label'>Choose direction</label>
+    <label for="direction-select" class='form-label mt-2'>Direction</label>
     <select class="form-select" id="direction-select">
       <option value="up" {% if include.selected == '1/16' %} selected {% endif %}>Ascending</option>
       <option value="down" {% if include.selected == '1/16' %} selected {% endif %}>Descending</option>
     </select>
-    <h5>T-part</h5>
-    <label for="octave-select" class='form-label'>Choose octave</label>
+    <h5 class='mt-4'>T-part</h5>
+    <label for="octave-select" class='form-label'>Octave</label>
     <select class="form-select" id="octave-select">
-      <option value="up">Above M-part</option>
-      <option value="down" selected>Below M-part</option>
+      <option value="'">Above M-part</option>
+      <option value="," selected>Below M-part</option>
     </select>
+    <div class='row border mx-1 mt-3 px-2 py-3'>
+      <div class='col'>
+        <div class="form-check">
+          <input class="form-check-input" value='' type="radio" name="scale-type-radio" id="scale-type-radio-major" checked>
+          <label class="form-check-label" for="scale-type-radio-major">
+            Major key
+          </label>
+        </div>
+        <div class="form-check">
+          <input class="form-check-input" value='m' type="radio" name="scale-type-radio" id="scale-type-radio-minor">
+          <label class="form-check-label" for="scale-type-radio-minor">
+            Minor key
+          </label>
+        </div>
+      </div>
+      <div class='col'>
+        {% include bpm-slider.html bpm="70" min="40" max="100" %}
+      </div>
+    </div>
   </form>
 
   <!-- GENERATE NOTES BUTTON -->
