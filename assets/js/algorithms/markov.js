@@ -1,6 +1,7 @@
-var score  = new Score("Markov Chains")
-var markov = new Markov()
-var tunes = [tune1, tune2, tune3, tune4, tune5, tune6]
+// add import ABC functionality to Score
+Object.assign(Score.prototype, importAbcMixin);
+var score  = new Score("Markov Chains");
+var markov = new Markov();
 
 window.onload = (event) => {
   document.querySelector('#genNotes').onclick  = generateNotes
