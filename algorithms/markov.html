@@ -83,8 +83,7 @@ js: markov
           <input type="range" class="form-range" min="3" max="9" step="1" id="order">
         </div>
         <div class='col'>
-          BPM: <strong><span id='bpm-display'>140</span></strong>
-          <input type="range" class="form-range" min="80" max="200" step="2" id="bpm">
+          {% include bpm-slider.html bpm="140" %}
         </div>
       </div>
 
