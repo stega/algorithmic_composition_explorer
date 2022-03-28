@@ -1,7 +1,7 @@
 class Score {
 
   constructor(title){
-    this.score      = []
+    this.score      = [[],[]]
     this.title      = title
     this.meter      = "4/4"
     this.noteLength = "1/8"
@@ -10,14 +10,16 @@ class Score {
     this.bars       = false
   }
 
-  addNote(pitch, duration) {
-    this.score.push({pitch:pitch, duration:duration})
+  addNote(pitch, duration, voice = 0) {
+    this.score[voice].push({pitch:pitch, duration:duration})
   }
+
   concat(score) {
 
   }
+
   clear() {
-    this.score = [];
+    this.score = [[],[]];
   }
 
   // -------------------
@@ -110,8 +112,15 @@ class Score {
   // TODO: if we use SPN (or some such), this is where we'd need to convert it back to HH for display
   scoreAsText() {
     var txt = ""
-    for(const [index,event] of this.score.entries()) {
-      txt += event.pitch + event.duration + ' '
+    for(const [i,voice] of this.score.entries()) {
+      // check if the current voice has any notes
+      if(voice.length > 0) {
+        // add the voices notes to output
+        // txt += "V:"
+        for(const [index,event] of voice.entries()) {
+          txt += event.pitch + event.duration + ' '
+        }
+      }
     }
     return txt
   }
@@ -130,40 +139,46 @@ class Score {
 
     var bar_count = 0.0
     var bar = 0
-    for(const [index,event] of this.score.entries()) {
-      // keep track of note lengths in order to add bars to score
-      // TODO: maybe we dont need to do this? Bar lines are making things look messy
-      if(this.bars){
-        // get the ABCs note length syntax into a format we can use (a float)
-        var note_len = event.duration
-        if(note_len == '/2'){
-          note_len = '0.5'
-        } else if(note_len == '3/2'){
-          note_len = '1.5'
-        }
-        bar_count += parseFloat(note_len)
-        if(bar_count > 8){
-          bar_count = bar_count - 8
-          abcString += '|'
-          bar++
-          // add line break every 4 bars
-          if(bar == 4) {
-            abcString += '\n'
-            bar = 0
+    for(const [i,voice] of this.score.entries()) {
+      if(voice.length > 0) {
+        abcString += "V:"
+        for(const [index,event] of voice.entries()) {
+          // keep track of note lengths in order to add bars to score
+          // TODO: maybe we dont need to do this? Bar lines are making things look messy
+          if(this.bars){
+            // get the ABCs note length syntax into a format we can use (a float)
+            var note_len = event.duration
+            if(note_len == '/2'){
+              note_len = '0.5'
+            } else if(note_len == '3/2'){
+              note_len = '1.5'
+            }
+            bar_count += parseFloat(note_len)
+            if(bar_count > 8){
+              bar_count = bar_count - 8
+              abcString += '|'
+              bar++
+              // add line break every 4 bars
+              if(bar == 4) {
+                abcString += '\n'
+                bar = 0
+              }
+            }
+          } else {
+            // no barlines, so limit to 20 notes per line to keep things readable
+            if(index > 0 && index % 20 == 0) {
+              abcString += '|'
+              abcString += '\n'
+            }
           }
+          abcString += event.pitch + event.duration
         }
-      } else {
-        // no barlines, so limit to 20 notes per line to keep things readable
-        if(index > 0 && index % 20 == 0) {
-          abcString += '|'
-          abcString += '\n'
-        }
+        // add double bar line to end
+        // console.log(abcString)
+        abcString += '||'
+        abcString += '\n'
       }
-      abcString += event.pitch + event.duration
     }
-    // add double bar line to end
-    console.log(abcString)
-    abcString += '||'
     return abcString
   }
 
