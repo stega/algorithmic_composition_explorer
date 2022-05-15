@@ -1,0 +1,16 @@
+<div class='row px-4 pt-4 pb-3 border-top'>
+  <h6>Choose instrument</h6>
+
+  <div class='col'>
+    <select class="form-select" id="instrument-select">
+      <option value="piano" {% if include.instrument == "piano" %} selected {% endif %}>Piano</option>
+      <option value="synth" {% if include.instrument == "synth" %} selected {% endif %}>Synth</option>
+    </select>
+  </div>
+  <div class='col mt-2'>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" role="switch" id="delay-switch" {% if include.delay %} checked {% endif %}>
+      <label class="form-check-label" for="delay-switch">Add echo</label>
+    </div>
+  </div>
+</div>

@@ -6,18 +6,24 @@
         <h5 class="modal-title" id="playerModalLabel">Generated score</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-        <div id="staff"></div>
+      <div class="modal-body text-center">
+        <div id="staff">
+          <h4 class='text-center mt-4'>There are no notes to display!</h4>
+          <p class='text-center'>Try playing around with the algorithm some more.</p>
+        </div>
+      </div>
+      <div id='instrument-chooser' hidden>
+        {% include instrument-chooser.html instrument="piano" delay=false %}
       </div>
       <div class="modal-footer" hidden>
         <div class='row'>
           <div class='col'>
             <!-- DOWNLOAD BUTTONS -->
-            <button type="button" id='downloadMIDI' class="btn btn-secondary" data-bs-dismiss="modal">
+            <button type="button" id='downloadMIDI' class="btn btn-secondary" onclick="scoreToMIDI()">
               <strong><i class="bi bi-download"></i></strong>
               MIDI
             </button>
-            <button type="button" id='downloadScore' class="btn btn-secondary" data-bs-dismiss="modal">
+            <button type="button" id='downloadScore' class="btn btn-secondary" onclick="scoreToPDF()">
               <strong><i class="bi bi-download"></i></strong>
               Score
             </button>
@@ -27,7 +33,7 @@
         <div class='row'>
           <div class='col'>
             <!-- STOP BUTTON -->
-            <button type="button" class="btn btn-secondary stop-button">
+            <button type="button" class="btn btn-secondary stop-button" id='stop' disabled>
               <strong><i class="bi bi-stop-fill"></i></strong>
               Stop
             </button>
