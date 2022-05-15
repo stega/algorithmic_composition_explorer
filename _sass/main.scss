@@ -3,17 +3,23 @@
 // ----------------------------------------
 .btn-primary{
   background-color: #307c97;
+  border-color: #307c97;
 }
 .btn-primary:hover{
   background-color: darken(#307c97, 10);
+  border-color: darken(#307c97, 10);
 }
 .btn-primary:focus{
   background-color: darken(#307c97, 10);
+  border-color: darken(#307c97, 10);
+}
+.btn-primary.disabled, .btn-primary:disabled{
+  background-color: darken(#307c97, 10);
+  border-color: darken(#307c97, 10);
 }
 .bg-primary{
   background-color: #307c97 !important;
 }
-
 .btn-outline-primary{
   border-color: #307c97;
   color: #307c97;
@@ -24,46 +30,54 @@
   color: #307c97;
   background-color: #eee;
 }
-
+a{
+  color: #307c97;
+}
+a:hover{
+  color: darken(#307c97, 20);
+}
 .nav-link{
   color: #307c97;
 }
 .nav-link:hover{
   color: darken(#307c97, 20);
 }
-// ----------------------------------------
-
+.btn-check:checked+.btn-outline-primary, .form-check-input:checked{
+  background-color: #307c97;
+  border-color: #307c97;
+}
+.form-range::-webkit-slider-thumb {
+  background: #307c97;
+}
+.form-range::-moz-range-thumb {
+  background: #307c97;
+}
+.form-range::-ms-thumb {
+  background: #307c97;
+}
 .algo-panel{
   border: 1px solid #ddd;
   background-color: #f9f9f9;
 }
-
 .green{
   background-color: green !important;
 }
-
-// ----------------------------------------
-// DICE
-// ----------------------------------------
 .dice-grid{
   padding-bottom: 1em;
 }
 .dice-num{
-  background-color:darken(#307c97, 0);
-  color: #fff;
-  text-align: center;
-  border: 1px solid #f9f9f9;
-}
-.dice-num-selected{
   background-color:#fff;
   border: 1px solid darken(#307c97, 0);
   color: #307c97;
   text-align: center;
+}
+.dice-num-selected{
+  background-color:darken(#307c97, 0);
+  border: 1px solid #f9f9f9;
+  color: #fff;
+  text-align: center;
   font-weight: bold;
 }
-
-// sequencer
-.btn-check:checked+.btn-outline-primary{
-  background-color: #307c97;
-  border: 1px solid #307c97;
+.choose-instrument{
+  background-color: #aaa;
 }
