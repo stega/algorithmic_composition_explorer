@@ -1,0 +1,22 @@
+<div class='row'>
+  <div class='col'>
+    <label for="key-select" class='form-label'>Key</label>
+    <select class="form-select" id="key-select">
+      {% include pitch-select.html selected=include.key %}
+    </select>
+  </div>
+  <div class='col pt-4'>
+    <div class="form-check">
+      <input class="form-check-input" value='major' type="radio" {{ include.major }} name="scale-type-radio" id="scale-type-radio-major">
+      <label class="form-check-label" for="scale-type-radio-major">
+        Major
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" value='minor' type="radio" {{ include.minor }} name="scale-type-radio" id="scale-type-radio-minor">
+      <label class="form-check-label" for="scale-type-radio-minor">
+        Minor
+      </label>
+    </div>
+  </div>
+</div>

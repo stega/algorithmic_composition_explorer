@@ -5,7 +5,7 @@ js: markov
 ---
 
 <h4 class='mb-3'>Try it yourself!</h4>
-<div class='container algo-panel pt-4 rounded-3'>
+<div class='container algo-panel p-3 pt-4 rounded-3'>
 
   <form enctype="multipart/form-data">
       <h4>Choose songs </h4>
@@ -83,8 +83,9 @@ js: markov
           <input type="range" class="form-range" min="3" max="9" step="1" id="order">
         </div>
         <div class='col'>
-          {% include bpm-slider.html bpm="140" %}
+          {% include bpm-slider.html bpm="140" min="70" max="200" %}
         </div>
+        {% include key-chooser.html key="D" minor="checked" %}
       </div>
 
   </form>
@@ -108,13 +109,16 @@ js: markov
 
 {% contentfor algorithm_description %}
 
-<p>Markov Chains are a sequence of random numbers, where the current random number only depends on one previous state. In the domain of music, it can be used to predict the notes of a song, given that it has had a song to work on before. In essence, it allows for some amount of machine learning probabilistic modeling of music. With the notes of the input song, we can construct an adjacency matrix for a Markov Chain by calculating the probabilities of the occurrence of a note, depending on its previous note. The output is a melody which is similar to the one given as the input.</p>
+<p>Marvok chains use probability to predict stuff. Using probability can sometimes get pretty wild results, so Marvok chains try and tame things by basing the likelihood of a particular event happening next on the current event thats happening now. In a musical context, the algorithm could analyse a set of songs and calculate the probability of any particular note or phrase following another in those songs.</p>
+
+<p>In practice, this means that Markov chains can generate music in a similar style to that its been trained with. But whats that 'markov order' slider doing over there - how does that affect the output?
+And if this generates music in a similar style to its inputs, what happens when you mix up the genres?</p>
 
 <h4>Instructions</h4>
 <ol>
-  <li>Add text to be analysed</li>
-  <li>Change vowel-to-note mapping to the notes of your choice</li>
-  <li>Change note length mapping</li>
+  <li>Choose the songs that will be used as inputs (you can preview the songs if you want to hear how they sound).</li>
+  <li>Set the Order, and see what it does (hint: higher order chains will consider longer phrases from the input songs).</li>
+  <li>To keep things under control (especially when mixing genres), you can keep everything aligned to a key and scale.</li>
   <li>Generate music!</li>
 </ol>
 {% endcontentfor %}
@@ -122,34 +126,32 @@ js: markov
 <!------------------------------------------------------------------------------------------------------>
 
 {% contentfor code %}
-<h4>The code</h4>
+<h4>Code</h4>
 <pre>
-  <code>// create score to store the notes
-    // get selected tunes into array
-    var tunes_array = []
-    var selectedTunes = document.querySelectorAll('.tune-checkbox:checked');
-    for(tune of selectedTunes){
-      var t = new Score()
-      t.importABC(window[tune.id])
-      tunes_array.push(t.scoreAsText())
+  <code>// add the selected tunes to markov
+markov.addStates(tunes_array)
+// set the markov order, and train!
+markov.train(order)
+// use markov to generate the music
+var generatedNotes = markov.generateRandom(200)
+
+// loop through all the generated notes
+// and create a new Score from them
+for(event of generatedNotes.split(' ')){
+  if(event != ""){
+    note = event.split(':')[0]
+    len = event.split(':')[1]
+    // markov can sometimes spit out odd data
+    // so make sure we have a note and a well-formatted
+    // duration before adding it to score
+    var reggy = /([1-4]|8|16)[nm]\.?/
+    if(note && reggy.test(len)){
+      score.addNote(note,len)
     }
-
-    markov.addStates(tunes_array)
-
-    var order = document.querySelector('#order').value
-    markov.train(parseInt(order))
-
-    var bpm = document.querySelector('#bpm').value
-    score.tempo = bpm
-    score.key = "D"
-
-    var generatedNotes = markov.generateRandom(120)
-    for(event of generatedNotes.split(' ')){
-      if(event != ""){
-        score.addNote(event[0], event[1])
-      }
-    }
-    score.render()
+  }
+}
+score.applyKey()
+score.render()
   </code>
 </pre>
 {% endcontentfor %}

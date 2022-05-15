@@ -8,76 +8,71 @@ js: tintinnabuli
 <div class='container algo-panel pt-4 rounded-3'>
 
   <form enctype="multipart/form-data">
-    <h5>M-part</h5>
-    <label for="key-select" class='form-label'>Key</label>
-    <select class="form-select" id="key-select">
-      {% include pitch-select.html selected="C" %}
-    </select>
+    {% include key-chooser.html key="C" minor="checked" %}
 
-    <div class='sequencer m-3'>
-      <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group" id='seq-btns'>
-        <input type="checkbox" class="btn-check" id="btncheck1" autocomplete="off">
-        <label class="btn btn-outline-primary me-1" for="btncheck1">1</label>
+    <div class='sequencer my-4'>
+      <label class="mb-2">Rhythm Sequencer</label>
+      <div class='row'>
+        <div class='col'>
+          <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group" id='seq-btns'>
+            <input type="checkbox" class="btn-check" id="seq1" autocomplete="off" checked>
+            <label class="btn btn-outline-primary me-1" for="seq1">1</label>
 
-        <input type="checkbox" class="btn-check" id="btncheck2" autocomplete="off">
-        <label class="btn btn-outline-primary me-1" for="btncheck2">2</label>
+            <input type="checkbox" class="btn-check" id="seq2" autocomplete="off" checked>
+            <label class="btn btn-outline-primary me-1" for="seq2">2</label>
 
-        <input type="checkbox" class="btn-check" id="btncheck3" autocomplete="off">
-        <label class="btn btn-outline-primary me-1" for="btncheck3">3</label>
+            <input type="checkbox" class="btn-check" id="seq3" autocomplete="off">
+            <label class="btn btn-outline-primary me-1" for="seq3">3</label>
 
-        <input type="checkbox" class="btn-check" id="btncheck4" autocomplete="off">
-        <label class="btn btn-outline-primary me-1" for="btncheck4">4</label>
+            <input type="checkbox" class="btn-check" id="seq4" autocomplete="off" checked>
+            <label class="btn btn-outline-primary me-1" for="seq4">4</label>
 
-        <input type="checkbox" class="btn-check" id="btncheck5" autocomplete="off">
-        <label class="btn btn-outline-primary me-1" for="btncheck5">5</label>
-
-        <input type="checkbox" class="btn-check" id="btncheck6" autocomplete="off">
-        <label class="btn btn-outline-primary me-1" for="btncheck6">6</label>
-
-        <input type="checkbox" class="btn-check" id="btncheck7" autocomplete="off">
-        <label class="btn btn-outline-primary me-1" for="btncheck7">7</label>
-
-        <input type="checkbox" class="btn-check" id="btncheck8" autocomplete="off">
-        <label class="btn btn-outline-primary me-1" for="btncheck8">8</label>
+            <input type="checkbox" class="btn-check" id="seq5" autocomplete="off">
+            <label class="btn btn-outline-primary me-1" for="seq5">5</label>
+          </div>
+        </div>
+        <div class='col text-end'>
+          <button type="button" class='btn btn-outline-secondary rounded-circle' id='seq-plus'>+</button>
+          <button type="button" class='btn btn-outline-secondary rounded-circle' id='seq-minus'>-</button>
+        </div>
       </div>
-      <button type="button" class='btn btn-outline-primary' id='seq-plus'>+</button>
-      <button type="button" class='btn btn-outline-primary' id='seq-minus'>-</button>
     </div>
 
-    <label for="rhythm-select" class='form-label mt-2'>Base rhythm</label>
-    <select class="form-select" id="rhythm-select">
-      {% include duration-select.html selected="1/2" %}
-    </select>
-    <label for="direction-select" class='form-label mt-2'>Direction</label>
-    <select class="form-select" id="direction-select">
-      <option value="up" {% if include.selected == '1/16' %} selected {% endif %}>Ascending</option>
-      <option value="down" {% if include.selected == '1/16' %} selected {% endif %}>Descending</option>
-    </select>
-    <h5 class='mt-4'>T-part</h5>
-    <label for="octave-select" class='form-label'>Octave</label>
-    <select class="form-select" id="octave-select">
-      <option value="'">Above M-part</option>
-      <option value="," selected>Below M-part</option>
-    </select>
-    <div class='row border mx-1 mt-3 px-2 py-3'>
-      <div class='col'>
-        <div class="form-check">
-          <input class="form-check-input" value='' type="radio" name="scale-type-radio" id="scale-type-radio-major" checked>
-          <label class="form-check-label" for="scale-type-radio-major">
-            Major key
-          </label>
-        </div>
-        <div class="form-check">
-          <input class="form-check-input" value='m' type="radio" name="scale-type-radio" id="scale-type-radio-minor">
-          <label class="form-check-label" for="scale-type-radio-minor">
-            Minor key
-          </label>
-        </div>
-      </div>
-      <div class='col'>
+    <div class='row mt-4'>
+      <div class='col mt-3'>
         {% include bpm-slider.html bpm="70" min="40" max="100" %}
       </div>
+
     </div>
+    <div class=''>
+
+      <h5 class='mt-4'>M-part</h5>
+      <label for="direction-select" class='form-label mt-2'>Direction</label>
+      <select class="form-select" id="direction-select">
+        <option value="up">Ascending</option>
+        <option value="down" selected>Descending</option>
+        <option value="updown">Ascending / descending</option>
+        <option value="random">Random</option>
+      </select>
+      <h5 class='mt-4'>T-part</h5>
+      <div class='row'>
+        <div class='col'>
+          <label for="octave-select" class='form-label'>Octave</label>
+          <select class="form-select" id="octave-select">
+            <option value="8P" selected>Above M-part</option>
+            <option value="-8P">Below M-part</option>
+          </select>
+        </div>
+        <div class='col'>
+          <label for="chordtone-select" class='form-label'>Chord Tones</label>
+          <select class="form-select" id="chordtone-select">
+            <option selected>1-3-5</option>
+            <option>1-3-5-7</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
   </form>
 
   <!-- GENERATE NOTES BUTTON -->
@@ -98,8 +93,15 @@ js: tintinnabuli
 <!------------------------------------------------------------------------------------------------------>
 
 {% contentfor algorithm_description %}
-Tintinnabuli, from the Latin for bell, is a compositional style created by the Estonian composer Arvo Pärt. Musically, tintinnabular music is characterized by two types of voice, the first of which (dubbed the "tintinnabular voice") arpeggiates the tonic triad, and the second of which moves diatonically in stepwise motion. The works often have a slow and meditative tempo, and a minimalist approach to both notation and performance.
+<p>Tintinnabuli, from the Latin for bell, is a compositional style created by the Estonian composer Arvo Pärt. Musically, tintinnabular music is characterized by two types of voice, the first of which (dubbed the "tintinnabular voice") arpeggiates the tonic triad, and the second of which moves diatonically in stepwise motion. The works often have a slow and meditative tempo, and a minimalist approach to both notation and performance.</p>
 
+<h4>Instructions</h4>
+<ol>
+  <li>Set the key of the piece</li>
+  <li>Use the ryhtmic sequencer and default note length to generate different rhytmic feels</li>
+  <li>The M-part (melody part) can be a ascending or descending line, or random</li>
+  <li>The T-part (triad part) can be pitched an octave above or below the M-part</li>
+</ol>
 {% endcontentfor %}
 
 <!------------------------------------------------------------------------------------------------------>
@@ -108,6 +110,34 @@ Tintinnabuli, from the Latin for bell, is a compositional style created by the E
 <h4>The code</h4>
 <pre>
   <code>// create score to store the notes
+    score.clear()
+
+    // get selected tunes into array
+    var tunes_array = []
+    var selectedTunes = document.querySelectorAll('.tune-checkbox:checked');
+    for(tune of selectedTunes){
+      var t = new Score()
+      t.importABC(window[tune.id])
+      tunes_array.push(t.scoreAsText())
+    }
+
+    markov.addStates(tunes_array)
+
+    var order = document.querySelector('#order').value
+    markov.train(parseInt(order))
+
+    var bpm = document.querySelector('#bpm').value
+    score.tempo = bpm
+    score.key = "D"
+
+    var generatedNotes = markov.generateRandom(120)
+
+    for(event of generatedNotes.split(' ')){
+      if(event != ""){
+        score.addNote(event[0], event[1])
+      }
+    }
+    score.render()
   </code>
 </pre>
 {% endcontentfor %}

@@ -1,12 +1,15 @@
 - name: Guido of Arezzo
   link: /algorithms/guido.html
-# - name: Musikalisches Würfelspiel - dice games
-#   link: /algorithms/dice.html
+- name: Musikalisches Würfelspiel - dice games
+  link: /algorithms/dice.html
 - name: Markov chains
   link: /algorithms/markov.html
 - name: Arvo Pärt - Tintinnabuli
   link: /algorithms/tintinnabuli.html
-- name: Twelve-tone Method & Serialism
-  link: /algorithms/serialism.html
-- name: Machine Learning - Magenta
-  link: /algorithms/magenta.html
+
+# adding new algorithms requires adding a link to the page as shown below:
+
+# - name: Twelve-tone Method & Serialism
+#   link: /algorithms/serialism.html
+# - name: Machine Learning - Magenta
+#   link: /algorithms/magenta.html

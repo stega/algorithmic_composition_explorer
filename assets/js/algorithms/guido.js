@@ -1,9 +1,10 @@
 var score = new Score();
 
-window.onload = (event) => {
+window.addEventListener("load",function(event) {
   document.querySelector('#genNotes').onclick  = generateNotes
   document.querySelector('#play').onclick = playGeneratedNotes
-}
+  document.querySelector('#bpm').oninput = updateBPM
+}, false)
 
 function generateNotes(e) {
   score.clear()
@@ -11,12 +12,11 @@ function generateNotes(e) {
   fullText = document.querySelector('#notes-input').value;
   // generate musical pattern from users text
   mapPitches(fullText);
+  // set the BPM
+  score.tempo = document.querySelector('#bpm').value
+  score.title = "Guido of Arezzo"
   // display music
   score.render();
-}
-
-function playGeneratedNotes(e) {
-  AudioPlayer.play(score.toABC());
 }
 
 function buildPitchTable() {
@@ -51,12 +51,10 @@ function mapPitches(text) {
       if (isVowel(char)) {
         duration = durationTable[char];
         pitch    = pitchTable[char];
-        score.addNote(pitch, duration);
+        score.addNote(pitch+'4', duration);
       }
     }
   });
-  // end score
-  // score.addDoubleBarline();
 }
 
 function isVowel(char) {
