@@ -79,18 +79,38 @@ class Score {
     return txt
   }
 
+  // -----------------------------
+  // converts score to MIDI format
+  // -----------------------------
   scoreAsMIDI() {
     // create a new midi file
     var midi = new Midi()
+    // set tempo
+    midi.header.setTempo(this.tempo)
     this.score.forEach(voice => {
       // add a track
       var track = midi.addTrack()
       voice.forEach(event => {
-        track.addNote({
-          midi: event.pitch,
-          time: Tone.Time(event.time).toMilliseconds(),
-          duration: Tone.Time(event.duration).toMilliseconds(),
-        })
+        // ignore rests
+        if(event.pitch !== 'z'){
+          if(Array.isArray(event.pitch)){
+            // we have a chord, so add each note individually
+            event.pitch.forEach(pitch => {
+              track.addNote({
+                name: pitch,
+                time: Tone.Time(event.time).toSeconds(),
+                duration: Tone.Time(event.duration).toSeconds()
+              })
+            })
+          } else {
+            // we have a single note
+            track.addNote({
+              name: event.pitch,
+              time: Tone.Time(event.time).toSeconds(),
+              duration: Tone.Time(event.duration).toSeconds()
+            })
+          }
+        }
       })
     })
     return midi

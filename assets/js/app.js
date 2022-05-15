@@ -43,16 +43,16 @@ function resetPlaybackButtons() {
 }
 
 // creates a filename friendly string in snake_case
-function snake_case_string(str) {
+function snakeCaseString(str) {
   return str && str.match(/[A-Z]{2,}(?=[A-Z][a-z]+[0-9]*|\b)|[A-Z]?[a-z]+[0-9]*|[A-Z]|[0-9]+/g)
                    .map(s => s.toLowerCase())
                    .join('_')
 }
 
 function scoreToMIDI() {
-  midi = score.scoreAsMIDI()
-  var myFile = new File([midi.toArray()], "output.mid", {type: "audio/midi;base64"})
-  saveAs(myFile);
+  var midi = score.scoreAsMIDI()
+  var midiFile = new File([midi.toArray()], `${snakeCaseString(score.title)}.mid`, {type: "audio/midi;base64"})
+  saveAs(midiFile)
 }
 
 function scoreToPDF() {
@@ -62,7 +62,7 @@ function scoreToPDF() {
 
   // format and set filename
   var options = {
-    filename: snake_case_string(filename)
+    filename: snakeCaseString(filename)
   }
 
   // create instance of html2pdf class

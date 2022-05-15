@@ -93,14 +93,15 @@ js: tintinnabuli
 <!------------------------------------------------------------------------------------------------------>
 
 {% contentfor algorithm_description %}
-<p>Tintinnabuli, from the Latin for bell, is a compositional style created by the Estonian composer Arvo Pärt. Musically, tintinnabular music is characterized by two types of voice, the first of which (dubbed the "tintinnabular voice") arpeggiates the tonic triad, and the second of which moves diatonically in stepwise motion. The works often have a slow and meditative tempo, and a minimalist approach to both notation and performance.</p>
+<p>Tintinnabuli, from the Latin for bell, is a compositional style created by the Estonian composer Arvo Pärt. It has been characterised as serene and enigmatic, sounding both modern and ancient at the same time. There are two elements that work together in the tintinnabuli style. The M-part represents a melodic line, moving stepwise through a scale. The second part, the T-part, consists of chord tones taken from a major or minor triad. </p>
 
 <h4>Instructions</h4>
 <ol>
-  <li>Set the key of the piece</li>
-  <li>Use the ryhtmic sequencer and default note length to generate different rhytmic feels</li>
-  <li>The M-part (melody part) can be a ascending or descending line, or random</li>
-  <li>The T-part (triad part) can be pitched an octave above or below the M-part</li>
+  <li>Set the key of the piece.</li>
+  <li>The sequencer can be used to generate different rhythms. Try using the (+) and (-) buttons to change the length.</li>
+  <li>The M-part (melody part) can be an ascending or descending line, or just plain random.</li>
+  <li>The T-part (triad part) can be pitched an octave above or below the M-part.</li>
+  <li>Generate music!</li>
 </ol>
 {% endcontentfor %}
 
@@ -109,35 +110,39 @@ js: tintinnabuli
 {% contentfor code %}
 <h4>The code</h4>
 <pre>
-  <code>// create score to store the notes
-    score.clear()
+  <code>// generate scale in selected key
+var scale = generateScale(score.key, 4)
+var tPart = generateChordTones(scale, octave, chordTones)
+var mPart = applyPatternToScale(scale, [1], direction)
+var rhythmPattern = convertPatternToNoteLengths(pattern)
 
-    // get selected tunes into array
-    var tunes_array = []
-    var selectedTunes = document.querySelectorAll('.tune-checkbox:checked');
-    for(tune of selectedTunes){
-      var t = new Score()
-      t.importABC(window[tune.id])
-      tunes_array.push(t.scoreAsText())
-    }
+// step through rhythm pattern and build Score from mPart & tPart notes
+var mPartIndex = 0
+for(var i = 0; i < rhythmPattern.length; i++){
+  // get note length for this step
+  var stepLen = rhythmPattern[i]
 
-    markov.addStates(tunes_array)
+  // add the next note in the M Part to the Score
+  note = mPart[mPartIndex]
+  score.addNote(note, stepLen, 0)
 
-    var order = document.querySelector('#order').value
-    markov.train(parseInt(order))
+  // add random note from the T Part to the Score
+  tIndex = Math.floor(Math.random() * tPart.length)
+  score.addNote(tPart[tIndex], stepLen, 1)
 
-    var bpm = document.querySelector('#bpm').value
-    score.tempo = bpm
-    score.key = "D"
+  // move index to the next note in the M Part
+  mPartIndex += 1
 
-    var generatedNotes = markov.generateRandom(120)
-
-    for(event of generatedNotes.split(' ')){
-      if(event != ""){
-        score.addNote(event[0], event[1])
-      }
-    }
-    score.render()
+  // if we have reached the end of the rhythm patter, but still have
+  // notes left to play, start the pattern over
+  if(i == rhythmPattern.length-1 && mPartIndex < mPart.length){
+    i = -1
+  }
+  // if we have no more notes to add, break
+  if(mPartIndex === mPart.length){ break }
+}
+// display score
+score.render()
   </code>
 </pre>
 {% endcontentfor %}
