@@ -20,6 +20,7 @@ function playGeneratedNotes() {
 function getInstrument(){
   var instrument = document.querySelector('#instrument-select').value;
   var delay = document.querySelector('#delay-switch').checked
+  // var delay = false
 
   if(instrument == 'synth'){
     var instr = makeSynth(delay)

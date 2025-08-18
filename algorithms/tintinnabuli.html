@@ -4,67 +4,105 @@ title: Arvo Pärt - Tintinnabuli
 js: tintinnabuli
 ---
 
-<h4 class='mb-3'>Try it yourself!</h4>
-<div class='container algo-panel pt-4 rounded-3'>
-
+<!-- <h4 class='mb-3'>Try it yourself!</h4> -->
+<div class="container algo-panel pt-4 rounded-3">
   <form enctype="multipart/form-data">
     {% include key-chooser.html key="C" minor="checked" %}
 
-    <div class='sequencer my-4'>
+    <div class="sequencer my-4">
       <label class="mb-2">Rhythm Sequencer</label>
-      <div class='row'>
-        <div class='col'>
-          <div class="btn-group" role="group" aria-label="Basic checkbox toggle button group" id='seq-btns'>
-            <input type="checkbox" class="btn-check" id="seq1" autocomplete="off" checked>
+      <div class="row">
+        <div class="col">
+          <div
+            class="btn-group"
+            role="group"
+            aria-label="Basic checkbox toggle button group"
+            id="seq-btns"
+          >
+            <input
+              type="checkbox"
+              class="btn-check"
+              id="seq1"
+              autocomplete="off"
+              checked
+            />
             <label class="btn btn-outline-primary me-1" for="seq1">1</label>
 
-            <input type="checkbox" class="btn-check" id="seq2" autocomplete="off" checked>
+            <input
+              type="checkbox"
+              class="btn-check"
+              id="seq2"
+              autocomplete="off"
+              checked
+            />
             <label class="btn btn-outline-primary me-1" for="seq2">2</label>
 
-            <input type="checkbox" class="btn-check" id="seq3" autocomplete="off">
+            <input
+              type="checkbox"
+              class="btn-check"
+              id="seq3"
+              autocomplete="off"
+            />
             <label class="btn btn-outline-primary me-1" for="seq3">3</label>
 
-            <input type="checkbox" class="btn-check" id="seq4" autocomplete="off" checked>
+            <input
+              type="checkbox"
+              class="btn-check"
+              id="seq4"
+              autocomplete="off"
+              checked
+            />
             <label class="btn btn-outline-primary me-1" for="seq4">4</label>
 
-            <input type="checkbox" class="btn-check" id="seq5" autocomplete="off">
+            <input
+              type="checkbox"
+              class="btn-check"
+              id="seq5"
+              autocomplete="off"
+            />
             <label class="btn btn-outline-primary me-1" for="seq5">5</label>
           </div>
         </div>
-        <div class='col text-end'>
-          <button type="button" class='btn btn-outline-secondary rounded-circle' id='seq-plus'>+</button>
-          <button type="button" class='btn btn-outline-secondary rounded-circle' id='seq-minus'>-</button>
+        <div class="col text-end">
+          <button type="button" class="btn btn-outline-secondary" id="seq-plus">
+            +
+          </button>
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            id="seq-minus"
+          >
+            -
+          </button>
         </div>
       </div>
     </div>
 
-    <div class='row mt-4'>
-      <div class='col mt-3'>
+    <div class="row mt-4">
+      <div class="col mt-3">
         {% include bpm-slider.html bpm="70" min="40" max="100" %}
       </div>
-
     </div>
-    <div class=''>
-
-      <h5 class='mt-4'>M-part</h5>
-      <label for="direction-select" class='form-label mt-2'>Direction</label>
+    <div class="">
+      <h5 class="mt-4">M-part</h5>
+      <label for="direction-select" class="form-label mt-2">Direction</label>
       <select class="form-select" id="direction-select">
         <option value="up">Ascending</option>
         <option value="down" selected>Descending</option>
         <option value="updown">Ascending / descending</option>
-        <option value="random">Random</option>
+        <!-- <option value="random">Random</option> -->
       </select>
-      <h5 class='mt-4'>T-part</h5>
-      <div class='row'>
-        <div class='col'>
-          <label for="octave-select" class='form-label'>Octave</label>
+      <h5 class="mt-4">T-part</h5>
+      <div class="row">
+        <div class="col">
+          <label for="octave-select" class="form-label">Octave</label>
           <select class="form-select" id="octave-select">
             <option value="8P" selected>Above M-part</option>
             <option value="-8P">Below M-part</option>
           </select>
         </div>
-        <div class='col'>
-          <label for="chordtone-select" class='form-label'>Chord Tones</label>
+        <div class="col">
+          <label for="chordtone-select" class="form-label">Chord Tones</label>
           <select class="form-select" id="chordtone-select">
             <option selected>1-3-5</option>
             <option>1-3-5-7</option>
@@ -72,17 +110,18 @@ js: tintinnabuli
         </div>
       </div>
     </div>
-
   </form>
 
   <!-- GENERATE NOTES BUTTON -->
-  <div class='row my-4 px-3'>
-    <div class='col-12 text-end'>
-      <button class="btn btn-primary"
-              id="genNotes"
-              data-bs-toggle="modal"
-              data-bs-target="#playerModal">
-            Generate!
+  <div class="row my-4 px-3">
+    <div class="col-12 text-end">
+      <button
+        class="btn btn-primary"
+        id="genNotes"
+        data-bs-toggle="modal"
+        data-bs-target="#playerModal"
+      >
+        Generate!
       </button>
     </div>
   </div>
@@ -93,14 +132,28 @@ js: tintinnabuli
 <!------------------------------------------------------------------------------------------------------>
 
 {% contentfor algorithm_description %}
-<p>Tintinnabuli, from the Latin for bell, is a compositional style created by the Estonian composer Arvo Pärt. It has been characterised as serene and enigmatic, sounding both modern and ancient at the same time. There are two elements that work together in the tintinnabuli style. The M-part represents a melodic line, moving stepwise through a scale. The second part, the T-part, consists of chord tones taken from a major or minor triad. </p>
-
-<h4>Instructions</h4>
+<p class="mb-4">
+  Tintinnabuli, from the Latin for bell, is a compositional style created by the
+  Estonian composer Arvo Pärt. It has been characterised as serene and
+  enigmatic, sounding both modern and ancient at the same time. There are two
+  elements that work together in the tintinnabuli style. The M-part represents a
+  melodic line, moving stepwise through a scale. The second part, the T-part,
+  consists of chord tones taken from a major or minor triad.
+</p>
+<h3>Instructions</h3>
 <ol>
   <li>Set the key of the piece.</li>
-  <li>The sequencer can be used to generate different rhythms. Try using the (+) and (-) buttons to change the length.</li>
-  <li>The M-part (melody part) can be an ascending or descending line, or just plain random.</li>
-  <li>The T-part (triad part) can be pitched an octave above or below the M-part.</li>
+  <li>
+    The sequencer can be used to generate different rhythms. Try using the [+]
+    and [-] buttons to change the length.
+  </li>
+  <li>
+    The M-part (melody part) can be an ascending or descending line, or just
+    plain random.
+  </li>
+  <li>
+    The T-part (triad part) can be pitched an octave above or below the M-part.
+  </li>
   <li>Generate music!</li>
 </ol>
 {% endcontentfor %}

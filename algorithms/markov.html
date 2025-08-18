@@ -4,100 +4,218 @@ title: Markov Chains
 js: markov
 ---
 
-<h4 class='mb-3'>Try it yourself!</h4>
-<div class='container algo-panel p-3 pt-4 rounded-3'>
-
+<!-- <h4 class="mb-3">Try it yourself!</h4> -->
+<div class="container algo-panel p-3 pt-4 rounded-3">
   <form enctype="multipart/form-data">
-      <h4>Choose songs </h4>
-      <h6>Welsh folk songs</h6>
-      <ul class='list-group' id='songs'>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          <div class="form-check form-switch">
-            <input class="form-check-input tune-checkbox" checked type="checkbox" role="switch" id="tune1">
-            <label class="form-check-label" for="tune1">Cainc y datgeinaid</label>
-          </div>
-          <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <button type="button" class="btn btn-sm btn-outline-primary stop-button">Stop</button>
-            <button type="button" class="btn btn-sm btn-outline-primary" id="tune1">Play</button>
-          </div>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          <div class="form-check form-switch">
-            <input class="form-check-input tune-checkbox" checked type="checkbox" role="switch" id="tune2">
-            <label class="form-check-label" for="tune2">Cán dan bared</label>
-          </div>
-          <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <button type="button" class="btn btn-sm btn-outline-primary stop-button">Stop</button>
-            <button type="button" class="btn btn-sm btn-outline-primary" id="tune2">Play</button>
-          </div>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          <div class="form-check form-switch">
-            <input class="form-check-input tune-checkbox" checked type="checkbox" role="switch" id="tune3">
-            <label class="form-check-label" for="tune3">Y Gelynen</label>
-          </div>
-          <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <button type="button" class="btn btn-sm btn-outline-primary stop-button">Stop</button>
-            <button type="button" class="btn btn-sm btn-outline-primary" id="tune3">Play</button>
-          </div>
-        </li>
-      </ul>
-
-      <h6 class='mt-4'>Computer games</h6>
-      <ul class='list-group' id='songs'>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          <div class="form-check form-switch">
-            <input class="form-check-input tune-checkbox" type="checkbox" role="switch" id="tune4">
-            <label class="form-check-label" for="tune1">Mortal Kombat</label>
-          </div>
-          <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <button type="button" class="btn btn-sm btn-outline-primary stop-button">Stop</button>
-            <button type="button" class="btn btn-sm btn-outline-primary" id="tune4">Play</button>
-          </div>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          <div class="form-check form-switch">
-            <input class="form-check-input tune-checkbox" type="checkbox" role="switch" id="tune5">
-            <label class="form-check-label" for="tune2">Tetris</label>
-          </div>
-          <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <button type="button" class="btn btn-sm btn-outline-primary stop-button">Stop</button>
-            <button type="button" class="btn btn-sm btn-outline-primary" id="tune5">Play</button>
-          </div>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          <div class="form-check form-switch">
-            <input class="form-check-input tune-checkbox" type="checkbox" role="switch" id="tune6">
-            <label class="form-check-label" for="tune3">Ultima</label>
-          </div>
-          <div class="btn-group" role="group" aria-label="Basic outlined example">
-            <button type="button" class="btn btn-sm btn-outline-primary stop-button">Stop</button>
-            <button type="button" class="btn btn-sm btn-outline-primary" id="tune6">Play</button>
-          </div>
-        </li>
-      </ul>
-
-      <div class='row border mx-1 mt-3 px-2 py-3'>
-        <div class='col'>
-          Markov Order: <strong><span id='order-display'>5</span></strong>
-          <input type="range" class="form-range" min="3" max="9" step="1" id="order">
+    <!-- <h4>Choose songs</h4> -->
+    <h6>Welsh folk songs</h6>
+    <ul class="list-group" id="songs">
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+      >
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input tune-checkbox"
+            checked
+            type="checkbox"
+            role="switch"
+            id="tune1"
+          />
+          <label class="form-check-label" for="tune1">Cainc y datgeinaid</label>
         </div>
-        <div class='col'>
-          {% include bpm-slider.html bpm="140" min="70" max="200" %}
+        <div class="btn-group" role="group">
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary stop-button"
+          >
+            Stop
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary"
+            id="tune1"
+          >
+            Play
+          </button>
         </div>
-        {% include key-chooser.html key="D" minor="checked" %}
+      </li>
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+      >
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input tune-checkbox"
+            checked
+            type="checkbox"
+            role="switch"
+            id="tune2"
+          />
+          <label class="form-check-label" for="tune2">Cán dan bared</label>
+        </div>
+        <div class="btn-group" role="group">
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary stop-button"
+          >
+            Stop
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary"
+            id="tune2"
+          >
+            Play
+          </button>
+        </div>
+      </li>
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+      >
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input tune-checkbox"
+            checked
+            type="checkbox"
+            role="switch"
+            id="tune3"
+          />
+          <label class="form-check-label" for="tune3">Y Gelynen</label>
+        </div>
+        <div class="btn-group" role="group">
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary stop-button"
+          >
+            Stop
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary"
+            id="tune3"
+          >
+            Play
+          </button>
+        </div>
+      </li>
+    </ul>
+
+    <h6 class="mt-4">Computer games</h6>
+    <ul class="list-group" id="songs">
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+      >
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input tune-checkbox"
+            type="checkbox"
+            role="switch"
+            id="tune4"
+          />
+          <label class="form-check-label" for="tune1">Mortal Kombat</label>
+        </div>
+        <div class="btn-group" role="group">
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary stop-button"
+          >
+            Stop
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary"
+            id="tune4"
+          >
+            Play
+          </button>
+        </div>
+      </li>
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+      >
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input tune-checkbox"
+            type="checkbox"
+            role="switch"
+            id="tune5"
+          />
+          <label class="form-check-label" for="tune2">Tetris</label>
+        </div>
+        <div class="btn-group" role="group">
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary stop-button"
+          >
+            Stop
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary"
+            id="tune5"
+          >
+            Play
+          </button>
+        </div>
+      </li>
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+      >
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input tune-checkbox"
+            type="checkbox"
+            role="switch"
+            id="tune6"
+          />
+          <label class="form-check-label" for="tune3">Ultima</label>
+        </div>
+        <div class="btn-group" role="group">
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary stop-button"
+          >
+            Stop
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary"
+            id="tune6"
+          >
+            Play
+          </button>
+        </div>
+      </li>
+    </ul>
+
+    <div class="row mx-1 mt-3 px-2 py-3">
+      <div class="col">
+        Markov Order: <strong><span id="order-display">5</span></strong>
+        <input
+          type="range"
+          class="form-range"
+          min="3"
+          max="9"
+          step="1"
+          id="order"
+        />
       </div>
-
+      <div class="col">
+        {% include bpm-slider.html bpm="140" min="70" max="200" %}
+      </div>
+      {% include key-chooser.html key="D" minor="checked" %}
+    </div>
   </form>
 
   <!-- GENERATE NOTES BUTTON -->
-  <div class='row my-4 px-3'>
-    <div class='col-12 text-end'>
-      <button class="btn btn-primary"
-              id="genNotes"
-              data-bs-toggle="modal"
-              data-bs-target="#playerModal">
-            Generate!
+  <div class="row my-4 px-3">
+    <div class="col-12 text-end">
+      <button
+        class="btn btn-primary"
+        id="genNotes"
+        data-bs-toggle="modal"
+        data-bs-target="#playerModal"
+      >
+        Generate!
       </button>
     </div>
   </div>
@@ -108,17 +226,36 @@ js: markov
 <!------------------------------------------------------------------------------------------------------>
 
 {% contentfor algorithm_description %}
+<p>
+  Marvok chains use probability to predict stuff. Using probability can
+  sometimes get pretty wild results, so Marvok chains try and tame things by
+  basing the likelihood of a particular event happening next on the current
+  event thats happening now. In a musical context, the algorithm could analyse a
+  set of songs and calculate the probability of any particular note or phrase
+  following another in those songs.
+</p>
 
-<p>Marvok chains use probability to predict stuff. Using probability can sometimes get pretty wild results, so Marvok chains try and tame things by basing the likelihood of a particular event happening next on the current event thats happening now. In a musical context, the algorithm could analyse a set of songs and calculate the probability of any particular note or phrase following another in those songs.</p>
-
-<p>In practice, this means that Markov chains can generate music in a similar style to that its been trained with. But whats that 'markov order' slider doing over there - how does that affect the output?
-And if this generates music in a similar style to its inputs, what happens when you mix up the genres?</p>
-
-<h4>Instructions</h4>
+<p class="mb-4">
+  In practice, this means that Markov chains can generate music in a similar
+  style to that its been trained with. But whats that 'markov order' slider
+  doing over there - how does that affect the output? And if this generates
+  music in a similar style to its inputs, what happens when you mix up the
+  genres?
+</p>
+<h3>Instructions</h3>
 <ol>
-  <li>Choose the songs that will be used as inputs (you can preview the songs if you want to hear how they sound).</li>
-  <li>Set the Order, and see what it does (hint: higher order chains will consider longer phrases from the input songs).</li>
-  <li>To keep things under control (especially when mixing genres), you can keep everything aligned to a key and scale.</li>
+  <li>
+    Choose the songs that will be used as inputs (you can preview the songs if
+    you want to hear how they sound).
+  </li>
+  <li>
+    Set the Order, and see what it does (hint: higher order chains will consider
+    longer phrases from the input songs).
+  </li>
+  <li>
+    To keep things under control (especially when mixing genres), you can keep
+    everything aligned to a key and scale.
+  </li>
   <li>Generate music!</li>
 </ol>
 {% endcontentfor %}

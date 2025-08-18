@@ -4,10 +4,9 @@ title: Musikalisches Würfelspiel
 js: dice
 ---
 
-<h4 class='mb-3'>Try it yourself!</h4>
 <div class='container algo-panel pt-4 rounded-3'>
   <!-- GENERATE NOTES BUTTON -->
-  <div class='row my-0 pb-4 my-md-4 px-md-3'>
+  <div class='row my-0 mb-md-4 px-md-3'>
     <div id="measure-grid"></div>
     <div class='col-12 text-end'>
       <button class="btn btn-outline-primary me-4" id="randomise">
@@ -22,24 +21,27 @@ js: dice
     </div>
   </div>
 </div>
-
 {% include player-modal.html %}
 
 
 {% contentfor algorithm_description %}
-<p>Musikalisches Würfelspiel (or musical dice game in German) has often been attributed to Mozart.</p>
+  <div class="col-sm-6">
+  <p>Musikalisches Würfelspiel (or musical dice game in German) has often been attributed to Mozart.</p>
 
-<p>The basis of the musical dice game consists of 272 musical measures and a table of rules used to select specific measures given a certain dice roll. The result is a randomly selected 16 bar piece of music.</p>
+  <p>The basis of the musical dice game consists of 272 musical measures and a table of rules used to select specific measures given a certain dice roll. The result is a randomly selected 16 bar piece of music.</p>
 
-<p>For those that are familiar with Ableton Live - see any similarities? What makes this different? How could this approach be applied to your own compositions?</p>
+  <p>For those that are familiar with Ableton Live - see any similarities? What makes this different? How could this approach be applied to your own compositions?</p>
+  </div>
+  <div class="col-sm-6">
+  <h3>How does it work?</h3>
+  <ol>
+    <li>Each column represents a measure of music, and each row gives you a different musical phrase for that measure.</li>
+    <li>Choose which phrase you want to for each measure.</li>
+    <li>Or just use the randomise button!</li>
+    <li>Generate music!</li>
+  </ol>
+  </div>
 
-<h4>How does it work?</h4>
-<ol>
-  <li>Each column represents a measure of music, and each row gives you a different musical phrase for that measure.</li>
-  <li>Choose which phrase you want to for each measure.</li>
-  <li>Or just use the randomise button!</li>
-  <li>Generate music!</li>
-</ol>
 {% endcontentfor %}
 
 <!------------------------------------------------------------------------------------------------------>

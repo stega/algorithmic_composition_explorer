@@ -1,10 +1,19 @@
-<nav class='mt-3'>
-  <h5>Algorithms</h5>
+<nav class='pe-3 '>
+  <a href="{{ site.baseurl }}/index.html">
+  <h2>Algorithmic<br /> Composition<br /> Explorer</h2>
+  </a>
+
   <div class="nav flex-column">
     {% for item in site.data.algorithm_nav %}
-      <a href="{{ item.link }}" class="nav-link" {% if page.url == "{{ item.link }}" %}class="active"{% endif %}>
+      <a href="{{ site.baseurl }}/{{ item.link }}" class="nav-link">
+        {% if page.url contains "algorithms" %}
+          <!-- {% assign url = page.url | slice: 1,50 %} -->
+          {% if page.url contains item.link %} ➪ {% endif %}
+        {% endif %}
         {{ item.name }}
       </a>
     {% endfor %}
+
+    <a class="mt-4" style="font-size: 0.8em;" href="https://stephengardener.com">stephengardener.com</a>
   </div>
 </nav>

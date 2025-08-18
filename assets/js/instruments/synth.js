@@ -39,7 +39,7 @@ function makeSynth(delay){
   let verb = new Tone.Reverb(4)
   verb.wet.value = 0.75
   if(delay){
-    let echo = new Tone.FeedbackDelay('16n.', 0.4)
+    let echo = new Tone.FeedbackDelay('4n.', 0.4)
     poly.connect(echo.connect(verb))
   } else {
     poly.connect(verb)
