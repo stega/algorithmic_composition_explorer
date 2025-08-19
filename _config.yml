@@ -21,9 +21,9 @@
 title: The Algorithmic Composition Explorer
 email: stephen@stega.info
 description: The Algorithmic Composition Explorer.
-domain: stega.github.io
-url: https://stega.github.io
-baseurl: "/algorithmic_composition_explorer"
+domain: ace.stephengardener.com
+url: https://ace.stephengardener.com
+# baseurl: "/algorithmic_composition_explorer"
 # url: "https://stephengardener.com" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Build settings
