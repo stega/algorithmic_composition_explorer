@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Algorhthmic Composition Explorer - Musikalisches Würfelspiel</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <!-- HTML TO PDF CONVERTER -->
+    <script src="https://cdn.jsdelivr.net/npm/js-html2pdf@1.1.4/lib/html2pdf.min.js"></script>
+    <!-- TONEJS -->
+    <script src="https://cdn.jsdelivr.net/npm/tone@14.7.77/build/Tone.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tonejs/midi@2.0.28/build/Midi.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/filesaver.js@1.3.4/FileSaver.min.js"></script>
+    <!-- TONAL -->
+    <script src="https://cdn.jsdelivr.net/npm/tonal/browser/tonal.min.js"></script>
+    <!-- MARKOV CHAINS  -->
+    <script src="https://cdn.jsdelivr.net/npm/js-markov@3.0.3/dist/markov.node.min.js"></script>
+
+    <link rel="stylesheet" href="/algorithmic_composition_explorer/assets/css/styles.css" />
+    <script src="/algorithmic_composition_explorer/assets/js/instruments/piano.js"></script>
+    <script src="/algorithmic_composition_explorer/assets/js/instruments/synth.js"></script>
+    <script src="/algorithmic_composition_explorer/assets/js/app.js"></script>
+    <script src="/algorithmic_composition_explorer/assets/js/abcjs-basic-min.js"></script>
+    <script src="/algorithmic_composition_explorer/assets/js/score.js"></script>
+    <script src="/algorithmic_composition_explorer/assets/js/mixins/import-abc-mixin.js"></script>
+    <script src="/algorithmic_composition_explorer/assets/js/audio-player.js"></script>
+    <script src="/algorithmic_composition_explorer/assets/js/algorithms/dice.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-2 mb-5"><nav class='pe-3 '>
+  <a href="/algorithmic_composition_explorer/index.html">
+  <h2>Algorithmic<br /> Composition<br /> Explorer</h2>
+  </a>
+
+  <div class="nav flex-column">
+    
+      <a href="/algorithmic_composition_explorer/algorithms/guido.html" class="nav-link">
+        
+          <!--  -->
+          
+        
+        Guido of Arezzo
+      </a>
+    
+      <a href="/algorithmic_composition_explorer/algorithms/dice.html" class="nav-link">
+        
+          <!--  -->
+           ➪ 
+        
+        Dice games
+      </a>
+    
+      <a href="/algorithmic_composition_explorer/algorithms/markov.html" class="nav-link">
+        
+          <!--  -->
+          
+        
+        Markov chains
+      </a>
+    
+      <a href="/algorithmic_composition_explorer/algorithms/tintinnabuli.html" class="nav-link">
+        
+          <!--  -->
+          
+        
+        Tintinnabuli
+      </a>
+    
+
+    <a class="mt-4" style="font-size: 0.8em;" href="https://stephengardener.com">stephengardener.com</a>
+  </div>
+</nav>
+</div>
+        <div class="col-sm-10 mb-5">
+          <div class="row">
+            <h1 class="mb-4">Musikalisches Würfelspiel</h1>
+          </div>
+          <div class="row pb-5">
+            <div class="col"><div class='container algo-panel pt-4 rounded-3'>
+  <!-- GENERATE NOTES BUTTON -->
+  <div class='row my-0 mb-md-4 px-md-3'>
+    <div id="measure-grid"></div>
+    <div class='col-12 text-end'>
+      <button class="btn btn-outline-primary me-4" id="randomise">
+            <i class="bi bi-dice-5 me-1"></i>
+            Randomise
+      <button class="btn btn-primary"
+              id="genNotes"
+              data-bs-toggle="modal"
+              data-bs-target="#playerModal">
+            Generate!
+      </button>
+    </div>
+  </div>
+</div>
+<!-- MODAL -->
+<div class="modal fade" id="playerModal" tabindex="-1" aria-labelledby="playerModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="playerModalLabel">Generated score</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <div id="staff">
+          <h4 class='text-center mt-4'>There are no notes to display!</h4>
+          <p class='text-center'>Try playing around with the algorithm some more.</p>
+        </div>
+      </div>
+      <div id='instrument-chooser' hidden>
+        <div class='row px-4 pt-4 pb-3 border-top'>
+  <h6>Choose instrument</h6>
+
+  <div class='col'>
+    <select class="form-select" id="instrument-select">
+      <option value="piano"  selected >Piano</option>
+      <option value="synth" >Synth</option>
+    </select>
+  </div>
+  <div class='col mt-2'>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" role="switch" id="delay-switch" >
+      <label class="form-check-label" for="delay-switch">Add echo</label>
+    </div>
+  </div>
+</div>
+
+      </div>
+      <div class="modal-footer" hidden>
+        <div class='row'>
+          <div class='col'>
+            <!-- DOWNLOAD BUTTONS -->
+            <button type="button" id='downloadMIDI' class="btn btn-secondary" onclick="scoreToMIDI()">
+              <strong><i class="bi bi-download"></i></strong>
+              MIDI
+            </button>
+            <button type="button" id='downloadScore' class="btn btn-secondary" onclick="scoreToPDF()">
+              <strong><i class="bi bi-download"></i></strong>
+              Score
+            </button>
+          </div>
+        </div>
+
+        <div class='row'>
+          <div class='col'>
+            <!-- STOP BUTTON -->
+            <button type="button" class="btn btn-secondary stop-button" id='stop' disabled>
+              <strong><i class="bi bi-stop-fill"></i></strong>
+              Stop
+            </button>
+            <!-- PLAY BUTTON -->
+            <button type="button" id='play' class='btn btn-primary'>
+              <strong><i class="bi bi-play-fill"></i></strong>
+              Play
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!------------------------------------------------------------------------------------------------------>
+
+
+</div>
+          </div>
+          <div class="row">
+              
+  <div class="col-sm-6">
+  <p>Musikalisches Würfelspiel (or musical dice game in German) has often been attributed to Mozart.</p>
+
+  <p>The basis of the musical dice game consists of 272 musical measures and a table of rules used to select specific measures given a certain dice roll. The result is a randomly selected 16 bar piece of music.</p>
+
+  <p>For those that are familiar with Ableton Live - see any similarities? What makes this different? How could this approach be applied to your own compositions?</p>
+  </div>
+  <div class="col-sm-6">
+  <h3>How does it work?</h3>
+  <ol>
+    <li>Each column represents a measure of music, and each row gives you a different musical phrase for that measure.</li>
+    <li>Choose which phrase you want to for each measure.</li>
+    <li>Or just use the randomise button!</li>
+    <li>Generate music!</li>
+  </ol>
+  </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

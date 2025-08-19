@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>The Algorhthmic Composition Explorer - Markov Chains</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <!-- HTML TO PDF CONVERTER -->
+    <script src="https://cdn.jsdelivr.net/npm/js-html2pdf@1.1.4/lib/html2pdf.min.js"></script>
+    <!-- TONEJS -->
+    <script src="https://cdn.jsdelivr.net/npm/tone@14.7.77/build/Tone.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@tonejs/midi@2.0.28/build/Midi.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/filesaver.js@1.3.4/FileSaver.min.js"></script>
+    <!-- TONAL -->
+    <script src="https://cdn.jsdelivr.net/npm/tonal/browser/tonal.min.js"></script>
+    <!-- MARKOV CHAINS  -->
+    <script src="https://cdn.jsdelivr.net/npm/js-markov@3.0.3/dist/markov.node.min.js"></script>
+
+    <link rel="stylesheet" href="/algorithmic_composition_explorer/assets/css/styles.css" />
+    <script src="/algorithmic_composition_explorer/assets/js/instruments/piano.js"></script>
+    <script src="/algorithmic_composition_explorer/assets/js/instruments/synth.js"></script>
+    <script src="/algorithmic_composition_explorer/assets/js/app.js"></script>
+    <script src="/algorithmic_composition_explorer/assets/js/abcjs-basic-min.js"></script>
+    <script src="/algorithmic_composition_explorer/assets/js/score.js"></script>
+    <script src="/algorithmic_composition_explorer/assets/js/mixins/import-abc-mixin.js"></script>
+    <script src="/algorithmic_composition_explorer/assets/js/audio-player.js"></script>
+    <script src="/algorithmic_composition_explorer/assets/js/algorithms/markov.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-2 mb-5"><nav class='pe-3 '>
+  <a href="/algorithmic_composition_explorer/index.html">
+  <h2>Algorithmic<br /> Composition<br /> Explorer</h2>
+  </a>
+
+  <div class="nav flex-column">
+    
+      <a href="/algorithmic_composition_explorer/algorithms/guido.html" class="nav-link">
+        
+          <!--  -->
+          
+        
+        Guido of Arezzo
+      </a>
+    
+      <a href="/algorithmic_composition_explorer/algorithms/dice.html" class="nav-link">
+        
+          <!--  -->
+          
+        
+        Dice games
+      </a>
+    
+      <a href="/algorithmic_composition_explorer/algorithms/markov.html" class="nav-link">
+        
+          <!--  -->
+           ➪ 
+        
+        Markov chains
+      </a>
+    
+      <a href="/algorithmic_composition_explorer/algorithms/tintinnabuli.html" class="nav-link">
+        
+          <!--  -->
+          
+        
+        Tintinnabuli
+      </a>
+    
+
+    <a class="mt-4" style="font-size: 0.8em;" href="https://stephengardener.com">stephengardener.com</a>
+  </div>
+</nav>
+</div>
+        <div class="col-sm-10">
+          <div class="row">
+            <h1 class="mb-4">Markov Chains</h1>
+          </div>
+          <div class="row gx-5 mb-5">
+            <div class="col-sm-6"><!-- <h4 class="mb-3">Try it yourself!</h4> -->
+<div class="container algo-panel p-3 pt-4 rounded-3">
+  <form enctype="multipart/form-data">
+    <!-- <h4>Choose songs</h4> -->
+    <h6>Welsh folk songs</h6>
+    <ul class="list-group" id="songs">
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+      >
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input tune-checkbox"
+            checked
+            type="checkbox"
+            role="switch"
+            id="tune1"
+          />
+          <label class="form-check-label" for="tune1">Cainc y datgeinaid</label>
+        </div>
+        <div class="btn-group" role="group">
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary stop-button"
+          >
+            Stop
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary"
+            id="tune1"
+          >
+            Play
+          </button>
+        </div>
+      </li>
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+      >
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input tune-checkbox"
+            checked
+            type="checkbox"
+            role="switch"
+            id="tune2"
+          />
+          <label class="form-check-label" for="tune2">Cán dan bared</label>
+        </div>
+        <div class="btn-group" role="group">
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary stop-button"
+          >
+            Stop
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary"
+            id="tune2"
+          >
+            Play
+          </button>
+        </div>
+      </li>
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+      >
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input tune-checkbox"
+            checked
+            type="checkbox"
+            role="switch"
+            id="tune3"
+          />
+          <label class="form-check-label" for="tune3">Y Gelynen</label>
+        </div>
+        <div class="btn-group" role="group">
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary stop-button"
+          >
+            Stop
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary"
+            id="tune3"
+          >
+            Play
+          </button>
+        </div>
+      </li>
+    </ul>
+
+    <h6 class="mt-4">Computer games</h6>
+    <ul class="list-group" id="songs">
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+      >
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input tune-checkbox"
+            type="checkbox"
+            role="switch"
+            id="tune4"
+          />
+          <label class="form-check-label" for="tune1">Mortal Kombat</label>
+        </div>
+        <div class="btn-group" role="group">
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary stop-button"
+          >
+            Stop
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary"
+            id="tune4"
+          >
+            Play
+          </button>
+        </div>
+      </li>
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+      >
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input tune-checkbox"
+            type="checkbox"
+            role="switch"
+            id="tune5"
+          />
+          <label class="form-check-label" for="tune2">Tetris</label>
+        </div>
+        <div class="btn-group" role="group">
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary stop-button"
+          >
+            Stop
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary"
+            id="tune5"
+          >
+            Play
+          </button>
+        </div>
+      </li>
+      <li
+        class="list-group-item d-flex justify-content-between align-items-center"
+      >
+        <div class="form-check form-switch">
+          <input
+            class="form-check-input tune-checkbox"
+            type="checkbox"
+            role="switch"
+            id="tune6"
+          />
+          <label class="form-check-label" for="tune3">Ultima</label>
+        </div>
+        <div class="btn-group" role="group">
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary stop-button"
+          >
+            Stop
+          </button>
+          <button
+            type="button"
+            class="btn btn-sm btn-outline-primary"
+            id="tune6"
+          >
+            Play
+          </button>
+        </div>
+      </li>
+    </ul>
+
+    <div class="row mx-1 mt-3 px-2 py-3">
+      <div class="col">
+        Markov Order: <strong><span id="order-display">5</span></strong>
+        <input
+          type="range"
+          class="form-range"
+          min="3"
+          max="9"
+          step="1"
+          id="order"
+        />
+      </div>
+      <div class="col">
+        BPM: <strong><span id='bpm-display'>140</span></strong>
+<input type="range" class="form-range" min="70" max="200" step="2" id="bpm">
+      </div>
+      <div class='row'>
+  <div class='col'>
+    <label for="key-select" class='form-label'>Key</label>
+    <select class="form-select" id="key-select">
+      
+<option value="A" >A</option>
+<option value="Bb" >Bb</option>
+<option value="B" >B</option>
+<option value="C"  >C</option>
+<option value="Db" >Db</option>
+<option value="D"  selected >D</option>
+<option value="Eb" >Eb</option>
+<option value="E" >E</option>
+<option value="F" >F</option>
+<option value="Gb" >Gb</option>
+<option value="G" >G</option>
+<option value="Ab" >Ab</option>
+    </select>
+  </div>
+  <div class='col pt-4'>
+    <div class="form-check">
+      <input class="form-check-input" value='major' type="radio"  name="scale-type-radio" id="scale-type-radio-major">
+      <label class="form-check-label" for="scale-type-radio-major">
+        Major
+      </label>
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" value='minor' type="radio" checked name="scale-type-radio" id="scale-type-radio-minor">
+      <label class="form-check-label" for="scale-type-radio-minor">
+        Minor
+      </label>
+    </div>
+  </div>
+</div>
+    </div>
+  </form>
+
+  <!-- GENERATE NOTES BUTTON -->
+  <div class="row my-4 px-3">
+    <div class="col-12 text-end">
+      <button
+        class="btn btn-primary"
+        id="genNotes"
+        data-bs-toggle="modal"
+        data-bs-target="#playerModal"
+      >
+        Generate!
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal fade" id="playerModal" tabindex="-1" aria-labelledby="playerModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="playerModalLabel">Generated score</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <div id="staff">
+          <h4 class='text-center mt-4'>There are no notes to display!</h4>
+          <p class='text-center'>Try playing around with the algorithm some more.</p>
+        </div>
+      </div>
+      <div id='instrument-chooser' hidden>
+        <div class='row px-4 pt-4 pb-3 border-top'>
+  <h6>Choose instrument</h6>
+
+  <div class='col'>
+    <select class="form-select" id="instrument-select">
+      <option value="piano"  selected >Piano</option>
+      <option value="synth" >Synth</option>
+    </select>
+  </div>
+  <div class='col mt-2'>
+    <div class="form-check form-switch">
+      <input class="form-check-input" type="checkbox" role="switch" id="delay-switch" >
+      <label class="form-check-label" for="delay-switch">Add echo</label>
+    </div>
+  </div>
+</div>
+
+      </div>
+      <div class="modal-footer" hidden>
+        <div class='row'>
+          <div class='col'>
+            <!-- DOWNLOAD BUTTONS -->
+            <button type="button" id='downloadMIDI' class="btn btn-secondary" onclick="scoreToMIDI()">
+              <strong><i class="bi bi-download"></i></strong>
+              MIDI
+            </button>
+            <button type="button" id='downloadScore' class="btn btn-secondary" onclick="scoreToPDF()">
+              <strong><i class="bi bi-download"></i></strong>
+              Score
+            </button>
+          </div>
+        </div>
+
+        <div class='row'>
+          <div class='col'>
+            <!-- STOP BUTTON -->
+            <button type="button" class="btn btn-secondary stop-button" id='stop' disabled>
+              <strong><i class="bi bi-stop-fill"></i></strong>
+              Stop
+            </button>
+            <!-- PLAY BUTTON -->
+            <button type="button" id='play' class='btn btn-primary'>
+              <strong><i class="bi bi-play-fill"></i></strong>
+              Play
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!------------------------------------------------------------------------------------------------------>
+
+
+
+<!------------------------------------------------------------------------------------------------------>
+
+
+</div>
+            <div class="col-sm-6 pe-sm-5 mb-4">
+              <!-- <h4 class="mb-3">About</h4> -->
+              
+<p>
+  Marvok chains use probability to predict stuff. Using probability can
+  sometimes get pretty wild results, so Marvok chains try and tame things by
+  basing the likelihood of a particular event happening next on the current
+  event thats happening now. In a musical context, the algorithm could analyse a
+  set of songs and calculate the probability of any particular note or phrase
+  following another in those songs.
+</p>
+
+<p class="mb-4">
+  In practice, this means that Markov chains can generate music in a similar
+  style to that its been trained with. But whats that 'markov order' slider
+  doing over there - how does that affect the output? And if this generates
+  music in a similar style to its inputs, what happens when you mix up the
+  genres?
+</p>
+<h3>Instructions</h3>
+<ol>
+  <li>
+    Choose the songs that will be used as inputs (you can preview the songs if
+    you want to hear how they sound).
+  </li>
+  <li>
+    Set the Order, and see what it does (hint: higher order chains will consider
+    longer phrases from the input songs).
+  </li>
+  <li>
+    To keep things under control (especially when mixing genres), you can keep
+    everything aligned to a key and scale.
+  </li>
+  <li>Generate music!</li>
+</ol>
+
+            </div>
+          </div>
+          <!-- <div class="row">
+            <div class="col">
+<h4>Code</h4>
+<pre>
+  <code>// add the selected tunes to markov
+markov.addStates(tunes_array)
+// set the markov order, and train!
+markov.train(order)
+// use markov to generate the music
+var generatedNotes = markov.generateRandom(200)
+
+// loop through all the generated notes
+// and create a new Score from them
+for(event of generatedNotes.split(' ')){
+  if(event != ""){
+    note = event.split(':')[0]
+    len = event.split(':')[1]
+    // markov can sometimes spit out odd data
+    // so make sure we have a note and a well-formatted
+    // duration before adding it to score
+    var reggy = /([1-4]|8|16)[nm]\.?/
+    if(note && reggy.test(len)){
+      score.addNote(note,len)
+    }
+  }
+}
+score.applyKey()
+score.render()
+  </code>
+</pre>
+</div>
+          </div> -->
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
