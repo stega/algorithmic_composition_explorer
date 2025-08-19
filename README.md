@@ -6,4 +6,4 @@ My main aim was to build a system that could offer an introduction to algorithmi
 
 This is a project I developed during my masters degree in [Music, Communication and Technology](https://www.uio.no/english/studies/programmes/mct-master/) at the University of Oslo.
 
-The app can be found at https://algorithmic-composition-explorer.com, and you can read more about it [here](https://mct-master.github.io/masters-thesis/2022/05/15/stephedg-algorithmic-composition-explorer.html).
+The tool can be found at https://ace.stephengardener.com, and you can read more about it [here](https://stephengardener.com/projects/ace/).
